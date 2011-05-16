@@ -25,7 +25,7 @@ html5_validators is a gem/plugin for Rails 3 that enables client-side validation
     <input id="user_name" name="user[name]" required="required" type="text" />
 
   SPEC:
-    http://dev.w3.org/html5/spec/Overview.html#attr-input-requiredhttp://dev.w3.org/html5/spec/Overview.html#attr-input-required
+    http://dev.w3.org/html5/spec/Overview.html#attr-input-required
 
 * LengthValidator => maxlength
 
