@@ -1,0 +1,100 @@
+= HTML5Validators
+
+Automatic client-side validation using HTML5 Form Validation
+
+
+== What is this?
+
+html5_validators is a gem/plugin for Rails 3 that enables client-side validation using ActiveModel + HTML5
+
+
+== Features
+
+* PresenceValidator => requried
+
+  Model:
+    class User
+      include ActiveModel::Validations
+      validates_presence_of :name
+    end
+
+  View:
+    <%= f.text_field :name %>
+
+  HTML:
+    <input id="user_name" name="user[name]" required="required" type="text" />
+
+  SPEC:
+    http://dev.w3.org/html5/spec/Overview.html#attr-input-requiredhttp://dev.w3.org/html5/spec/Overview.html#attr-input-required
+
+* LengthValidator => maxlength
+
+  Model:
+    class User
+      include ActiveModel::Validations
+      validates_length_of :name, :maximum => 5
+    end
+
+  View:
+    <%= f.text_field :name %>
+
+  HTML:
+    <input id="user_name" maxlength="5" name="user[name]" size="5" type="text" />
+
+  SPEC:
+    http://dev.w3.org/html5/spec/Overview.html#attr-input-maxlength
+
+* NumericalityValidator => max, min
+
+  Model:
+    class User
+      include ActiveModel::Validations
+      validates_numericality_of :age, :greater_than_or_equal_to => 20
+    end
+
+  View: (be sure to use number_field)
+    <%= f.number_field :age %>
+
+  HTML:
+    <input id="user_age" min="20" name="user[age]" size="30" type="number" />
+
+  SPEC:
+    http://dev.w3.org/html5/spec/Overview.html#attr-input-max
+    http://dev.w3.org/html5/spec/Overview.html#attr-input-min
+
+
+* And more (coming soon...?)
+
+
+== Supported versions
+
+* Ruby 1.8.7, 1.9.2, 1.9.3 (trunk)
+
+* Rails 3.0.x, 3.1.beta1, 3.1 (edge)
+
+* HTML5 compatible browsers
+
+
+== Installation
+
+Put this line into your Gemfile:
+  gem 'html5_validators'
+
+Then bundle:
+  % bundle
+
+
+== Notes
+
+When accessed by an HTML5 incompatible lagacy brwoser, these extra attributes will just be ignored.
+
+
+== Todo
+
+* specs
+* more validations
+
+
+== Copyright
+
+Copyright (c) 2011 Asakusa.rb. See LICENSE.txt for further details.
