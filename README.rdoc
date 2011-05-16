@@ -86,7 +86,7 @@ Then bundle:
 
 == Notes
 
-When accessed by an HTML5 incompatible lagacy brwoser, these extra attributes will just be ignored.
+When accessed by an HTML5 incompatible lagacy browser, these extra attributes will just be ignored.
 
 
 == Todo
