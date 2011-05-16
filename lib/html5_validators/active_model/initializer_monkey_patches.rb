@@ -1,3 +1,5 @@
+# A freedom patch for AMo 3.0.x and 3.1.0.beta1
+# see: https://github.com/rails/rails/pull/1085
 module ActiveModel
   module Validations
     class LengthValidator
