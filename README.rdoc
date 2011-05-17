@@ -104,4 +104,4 @@ When accessed by an HTML5 incompatible lagacy browser, these extra attributes wi
 
 == Copyright
 
-Copyright (c) 2011 Asakusa.rb. See LICENSE.txt for further details.
+Copyright (c) 2011 Asakusa.rb. See MIT-LICENSE for further details.
