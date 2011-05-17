@@ -12,6 +12,12 @@ module ActiveModel
 
         super
       end
+
+      def validate_each_with_default_tokenizer(record, attribute, value)
+        @options = (options || {}).reverse_merge(:tokenizer => DEFAULT_TOKENIZER).freeze
+        validate_each_without_default_tokenizer record, attribute, value
+      end
+      alias_method_chain :validate_each, :default_tokenizer
     end
 
     class NumericalityValidator
