@@ -10,7 +10,7 @@ html5_validators is a gem/plugin for Rails 3 that enables client-side validation
 
 == Features
 
-* PresenceValidator => requried
+===  PresenceValidator => requried
 
   Model:
     class User
@@ -29,16 +29,16 @@ html5_validators is a gem/plugin for Rails 3 that enables client-side validation
     http://dev.w3.org/html5/spec/Overview.html#attr-input-required
 
   SCREENSHOT:
-(text_field)
+* text_field
 https://img.skitch.com/20110516-1kmy7fcuwkq84xihki2udkgh3a.jpg
-(text_area)
+* text_area
 https://img.skitch.com/20110517-k5rccrn534n84etnmfc3xa7y69.jpg
-(radio_button)
+* radio_button
 https://img.skitch.com/20110517-e6bkg234yue5mstf67k88t57qg.jpg
-(check_box)
+* check_box
 https://img.skitch.com/20110517-ft1qyrb6mssytkbbdmxfiukrdw.jpg
 
-* LengthValidator => maxlength
+===  LengthValidator => maxlength
 
   Model:
     class User
@@ -55,7 +55,7 @@ https://img.skitch.com/20110517-ft1qyrb6mssytkbbdmxfiukrdw.jpg
   SPEC:
     http://dev.w3.org/html5/spec/Overview.html#attr-input-maxlength
 
-* NumericalityValidator => max, min
+===  NumericalityValidator => max, min
 
   Model:
     class User
