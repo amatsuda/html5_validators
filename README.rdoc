@@ -28,14 +28,8 @@ html5_validators is a gem/plugin for Rails 3 that enables client-side validation
   SPEC:
     http://dev.w3.org/html5/spec/Overview.html#attr-input-required
 
-  SCREENSHOT: (text_field)
-https://img.skitch.com/20110516-1kmy7fcuwkq84xihki2udkgh3a.jpg
-  SCREENSHOT: (text_area)
-https://img.skitch.com/20110517-k5rccrn534n84etnmfc3xa7y69.jpg
-  SCREENSHOT: (radio_button)
-https://img.skitch.com/20110517-e6bkg234yue5mstf67k88t57qg.jpg
-  SCREENSHOT: (check_box)
-https://img.skitch.com/20110517-ft1qyrb6mssytkbbdmxfiukrdw.jpg
+  SCREENSHOTS:
+http://img.skitch.com/20110517-8sagqrkjnmkinapmcc5tduy2b8.jpg
 
 ===  LengthValidator => maxlength
 
