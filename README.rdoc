@@ -75,9 +75,9 @@ http://img.skitch.com/20110516-n3jhu5m4gan8iy1j8er1qb7yfa.jpg
 
 == Supported versions
 
-* Ruby 1.8.7, 1.9.2, 1.9.3 (trunk)
+* Ruby 1.8.7, 1.9.2, 1.9.3, 2.0 (trunk)
 
-* Rails 3.0.x, 3.1.beta1, 3.1 (edge)
+* Rails 3.0.x, 3.1.x, 3.2.x, 4.0 (edge)
 
 * HTML5 compatible browsers
 
@@ -104,4 +104,4 @@ When accessed by an HTML5 incompatible lagacy browser, these extra attributes wi
 
 == Copyright
 
-Copyright (c) 2011 Asakusa.rb. See MIT-LICENSE for further details.
+Copyright (c) 2011 Akira Matsuda. See MIT-LICENSE for further details.
