@@ -7,6 +7,12 @@ feature 'person#new' do
       page.should have_css('input#person_name')
       page.should_not have_css('input#person_name[required=required]')
     end
+
+    scenario 'new_without_html5_validation form' do
+      visit '/people/new_without_html5_validation'
+      page.should have_css('input#person_email')
+      page.should_not have_css('input#person_email[required=required]')
+    end
   end
 
   context 'with required validation' do
@@ -20,6 +26,11 @@ feature 'person#new' do
       visit '/people/new'
       page.should have_css('input#person_name')
       page.should have_css('input#person_name[required=required]')
+    end
+    scenario 'new_without_html5_validation form' do
+      visit '/people/new_without_html5_validation'
+      page.should have_css('input#person_name')
+      page.should_not have_css('input#person_name[required=required]')
     end
   end
 end

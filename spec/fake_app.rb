@@ -34,6 +34,16 @@ class PeopleController < ApplicationController
 <% end %>
 ERB
   end
+
+  def new_without_html5_validation
+    @person = Person.new
+    render :inline => <<-ERB
+<%= form_for @person, :auto_html5_validation => false do |f| %>
+<%= f.text_field :name %>
+<%= f.text_field :email %>
+<% end %>
+ERB
+  end
 end
 
 # helpers
