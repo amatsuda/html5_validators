@@ -5,7 +5,8 @@ Automatic client-side validation using HTML5 Form Validation
 
 == What is this?
 
-html5_validators is a gem/plugin for Rails 3 that enables client-side validation using ActiveModel + HTML5
+html5_validators is a gem/plugin for Rails 3 that enables client-side validation using ActiveModel + HTML5.
+Once you bundle this gem on your app, the gem will automatically translate your model validation code into HTML5 validation attributes on every `form_for` invocation unless you explicitly cancel it.
 
 
 == Features
@@ -28,7 +29,6 @@ html5_validators is a gem/plugin for Rails 3 that enables client-side validation
   SPEC:
     http://dev.w3.org/html5/spec/Overview.html#attr-input-required
 
-  SCREENSHOTS:
 http://img.skitch.com/20110517-8sagqrkjnmkinapmcc5tduy2b8.jpg
 
 ===  LengthValidator => maxlength
@@ -66,11 +66,53 @@ http://img.skitch.com/20110517-8sagqrkjnmkinapmcc5tduy2b8.jpg
     http://dev.w3.org/html5/spec/Overview.html#attr-input-max
     http://dev.w3.org/html5/spec/Overview.html#attr-input-min
 
-  SCREENSHOT:
 http://img.skitch.com/20110516-n3jhu5m4gan8iy1j8er1qb7yfa.jpg
 
 
 * And more (coming soon...?)
+
+
+== Disabling automatic client-side validation
+
+There are three ways to cancel the automatic HTML5 validation
+
+* form_for option
+
+Set `auto_html5_validation: false` to `form_for` parameter
+
+  View:
+    <%= form_for @user, :auto_html5_validation => false do |f| %>
+      ...
+    <% end %>
+
+* model attribute
+
+Set `auto_html5_validation = false` attribute to ActiveModelish object
+
+  Controller:
+    @user = User.new auto_html5_validation: false
+
+  View:
+    <%= form_for @user do |f| %>
+      ...
+    <% end %>
+
+* model class configuration
+
+Write `auto_html5_validation = false` in ActiveModelish class
+
+  Model:
+    class User < ActiveRecord::Base
+      auto_html5_validation = false
+    end
+
+  Controller:
+    @user = User.new
+
+  View:
+    <%= form_for @user do |f| %>
+      ...
+    <% end %>
 
 
 == Supported versions
@@ -98,7 +140,6 @@ When accessed by an HTML5 incompatible lagacy browser, these extra attributes wi
 
 == Todo
 
-* specs
 * more validations
 
 
