@@ -12,6 +12,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   config.before :all do
+    ActiveRecord::Migration.verbose = false
     CreateAllTables.up unless ActiveRecord::Base.connection.table_exists? 'people'
   end
 end
