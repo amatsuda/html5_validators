@@ -31,6 +31,7 @@ class PeopleController < ApplicationController
     render :inline => <<-ERB
 <%= form_for @person do |f| %>
 <%= f.text_field :name %>
+<%= f.text_area :bio %>
 <% end %>
 ERB
   end
@@ -52,6 +53,11 @@ module ApplicationHelper; end
 #migrations
 class CreateAllTables < ActiveRecord::Migration
   def self.up
-    create_table(:people) {|t| t.string :name; t.string :email; t.integer :age}
+    create_table :people do |t|
+      t.string :name
+      t.string :email
+      t.integer :age
+      t.text :bio
+    end
   end
 end

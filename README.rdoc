@@ -41,6 +41,7 @@ http://img.skitch.com/20110517-8sagqrkjnmkinapmcc5tduy2b8.jpg
 
   View:
     <%= f.text_field :name %>
+    text_area is also available
 
   HTML:
     <input id="user_name" maxlength="10" name="user[name]" size="10" type="text" />

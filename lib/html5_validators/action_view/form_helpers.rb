@@ -5,6 +5,12 @@ module Html5Validators
         @options["required"] ||= object.class.attribute_required?(@method_name)
       end
     end
+
+    def inject_maxlength_field
+      if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+        @options["maxlength"] ||= object.class.attribute_maxlength(@method_name)
+      end
+    end
   end
 end if ActionPack::VERSION::STRING >= '4'
 
@@ -28,9 +34,9 @@ module ActionView
         class TextField
           def render_with_html5_attributes
             inject_required_field
+            inject_maxlength_field
 
             if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-              @options["maxlength"] ||= object.class.attribute_maxlength(@method_name)
               @options["max"] ||= object.class.attribute_max(@method_name)
               @options["min"] ||= object.class.attribute_min(@method_name)
             end
@@ -39,8 +45,17 @@ module ActionView
           alias_method_chain :render, :html5_attributes
         end
 
+        class TextArea
+          def render_with_html5_attributes
+            inject_required_field
+            inject_maxlength_field
+
+            render_without_html5_attributes
+          end
+        end
+
         #TODO probably I have to add some more classes here
-        [TextArea, RadioButton, CheckBox, Select, DateSelect, TimeZoneSelect].each do |kls|
+        [RadioButton, CheckBox, Select, DateSelect, TimeZoneSelect].each do |kls|
           kls.class_eval do
             def render_with_html5_attributes
               inject_required_field
@@ -67,6 +82,7 @@ module ActionView
         def to_text_area_tag_with_html5_attributes(options = {})
           if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
             options["required"] ||= object.class.attribute_required?(method_name)
+            options["maxlength"] ||= object.class.attribute_maxlength(method_name)
           end
           to_text_area_tag_without_html5_attributes options
         end
