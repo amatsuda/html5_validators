@@ -104,7 +104,7 @@ Write `auto_html5_validation = false` in ActiveModelish class
 
   Model:
     class User < ActiveRecord::Base
-      auto_html5_validation = false
+      self.auto_html5_validation = false
     end
 
   Controller:
