@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'railties', :git => 'git://github.com/rails/rails.git'
 gem 'activerecord', :git => 'git://github.com/rails/rails.git'
