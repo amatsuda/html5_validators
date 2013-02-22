@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ['ronnie@dio.jp']
   s.homepage    = 'https://github.com/amatsuda/html5_validators'
   s.summary     = 'Automatic client side validation using HTML5 Form Validation'
-  s.description = 'A gem/plugin for Rails 3 that enables client-side validation using ActiveModel + HTML5'
+  s.description = 'A gem/plugin for Rails 3+ that enables client-side validation using ActiveModel + HTML5'
 
   s.rubyforge_project = 'html5_validators'
 
