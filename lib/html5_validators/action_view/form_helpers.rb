@@ -59,7 +59,7 @@ module ActionView
           kls.class_eval do
             def render_with_html5_attributes
               inject_required_field
-              render_without_html5_attributes options
+              render_without_html5_attributes
             end
             alias_method_chain :render, :html5_attributes
           end
