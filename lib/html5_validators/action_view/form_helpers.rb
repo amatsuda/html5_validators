@@ -52,6 +52,7 @@ module ActionView
 
             render_without_html5_attributes
           end
+          alias_method_chain :render, :html5_attributes
         end
 
         #TODO probably I have to add some more classes here
