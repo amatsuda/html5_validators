@@ -1,16 +1,21 @@
 language: ruby
+
 rvm:
   - 1.8.7
   - 1.9.3
   - 2.0.0
   - 2.1.0
   - ruby-head
+
 gemfile:
   - gemfiles/Gemfile.rails-3.0
   - gemfiles/Gemfile.rails-3.1
   - gemfiles/Gemfile.rails-3.2
   - gemfiles/Gemfile.rails-4.0
   - gemfiles/Gemfile.rails-edge
+
+sudo: false
+
 matrix:
   exclude:
     - rvm: 2.0.0
