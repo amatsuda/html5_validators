@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'railties', '~> 3.1.0'
 gem 'activerecord', '~> 3.1.0'
+if RUBY_VERSION <= '1.8.7'
+  gem 'i18n', '~> 0.6.11'
+end
 gem 'nokogiri', '~> 1.5.0'
 gem 'rspec-rails', '~> 2.14.1'
 gem 'capybara', '~> 2.0.0'
