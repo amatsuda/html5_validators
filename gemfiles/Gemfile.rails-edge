@@ -2,5 +2,6 @@ source 'https://rubygems.org'
 
 gem 'railties', :git => 'git://github.com/rails/rails.git'
 gem 'activerecord', :git => 'git://github.com/rails/rails.git'
+gem 'arel', :git => 'git://github.com/rails/arel.git'
 
 gemspec :path => '..'
