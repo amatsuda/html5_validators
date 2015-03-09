@@ -32,24 +32,24 @@ matrix:
     - rvm: 1.9.3
       gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.0.0
-      gemfile: gemfiles/Gemfile-rails.3.0
+      gemfile: gemfiles/Gemfile.rails.3.0
     - rvm: 2.0.0
-      gemfile: gemfiles/Gemfile-rails.3.1
+      gemfile: gemfiles/Gemfile.rails.3.1
     - rvm: 2.0.0
       gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.1
       gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.2
-      gemfile: gemfiles/Gemfile-rails.3.0
+      gemfile: gemfiles/Gemfile.rails.3.0
     - rvm: 2.2
-      gemfile: gemfiles/Gemfile-rails.3.1
+      gemfile: gemfiles/Gemfile.rails.3.1
     - rvm: 2.2
-      gemfile: gemfiles/Gemfile-rails.3.2
+      gemfile: gemfiles/Gemfile.rails.3.2
     - rvm: ruby-head
-      gemfile: gemfiles/Gemfile-rails.3.0
+      gemfile: gemfiles/Gemfile.rails.3.0
     - rvm: ruby-head
-      gemfile: gemfiles/Gemfile-rails.3.1
+      gemfile: gemfiles/Gemfile.rails.3.1
     - rvm: ruby-head
-      gemfile: gemfiles/Gemfile-rails.3.2
+      gemfile: gemfiles/Gemfile.rails.3.2
   allow_failures:
     - rvm: ruby-head
