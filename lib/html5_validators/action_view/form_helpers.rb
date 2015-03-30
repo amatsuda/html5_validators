@@ -19,7 +19,11 @@ module ActionView
   module Helpers
     module FormHelper
       def form_for_with_auto_html5_validation_option(record, options = {}, &proc)
-        record.auto_html5_validation = false if (options[:auto_html5_validation] == false) && (record.respond_to? :auto_html5_validation=)
+        if record.respond_to?(:auto_html5_validation=)
+          if !Html5Validators.enabled || (options[:auto_html5_validation] == false)
+            record.auto_html5_validation = false
+          end
+        end
         form_for_without_auto_html5_validation_option record, options, &proc
       end
       alias_method_chain :form_for, :auto_html5_validation_option
