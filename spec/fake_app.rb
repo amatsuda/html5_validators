@@ -16,6 +16,7 @@ app.routes.draw do
   resources :people, :only => [:new, :create] do
     collection do
       get :new_without_html5_validation
+      get :new_with_required_true
     end
   end
 end
@@ -45,6 +46,15 @@ ERB
 <%= f.text_field :email %>
 <% end %>
 ERB
+  end
+
+  def new_with_required_true
+    @person = Person.new
+    render :inline => <<-ERB
+<%= form_for @person do |f| %>
+<%= f.text_field :email, :required => true %>
+<% end %>
+    ERB
   end
 end
 
