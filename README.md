@@ -125,9 +125,9 @@ Set `config.enabled = false` in Html5Validators
 
     Controller:
       around_action do |controller, block|
-        Html5Validators.config.enabled = false if params[:h5v] == 'disable'
+        Html5Validators.enabled = false if params[:h5v] == 'disable'
         block.call
-        Html5Validators.config.enabled = true if params[:h5v] == 'disable'
+        Html5Validators.enabled = true if params[:h5v] == 'disable'
       end
 
 ## Supported versions
