@@ -7,7 +7,7 @@ module Html5Validators
     @@enabled
   end
 
-  def self.enabled= enable
+  def self.enabled=(enable)
     @@enabled = enable
   end
 
