@@ -41,7 +41,7 @@ module ActionView
             if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
               options = @options.stringify_keys
               @options["max"] = options["maxlength"] || object.class.attribute_max(@method_name)
-              @options["min"] = options["maxlength"] || object.class.attribute_min(@method_name)
+              @options["min"] = options["minlength"] || object.class.attribute_min(@method_name)
             end
             render_without_html5_attributes
           end
