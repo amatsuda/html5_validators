@@ -56,6 +56,21 @@ feature 'person#new' do
         find('input#person_name')[:required].should be_nil
       end
     end
+
+    context 'disabling html5_validations in gem' do
+      background do
+        Html5Validators.enabled = false
+      end
+      after do
+        Html5Validators.enabled = true
+      end
+      scenario 'new form' do
+        visit '/people/new'
+
+        find('input#person_name')[:required].should be_nil
+        find('textarea#person_bio')[:required].should be_nil
+      end
+    end
   end
 
   context 'with maxlength validation' do

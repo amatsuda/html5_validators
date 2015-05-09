@@ -75,7 +75,7 @@ https://raw.githubusercontent.com/amatsuda/html5_validators/0928dc13fdd1a7746dee
 
 == Disabling automatic client-side validation
 
-There are three ways to cancel the automatic HTML5 validation
+There are four ways to cancel the automatic HTML5 validation
 
 * form_for option
 
@@ -114,6 +114,17 @@ Write `auto_html5_validation = false` in ActiveModelish class
     <%= form_for @user do |f| %>
       ...
     <% end %>
+
+* html5_validators configuration
+
+Set `config.enabled = false` in Html5Validators
+
+  Controller:
+    around_action do |controller, block|
+      Html5Validators.config.enabled = false if params[:h5v] == 'disable'
+      block.call
+      Html5Validators.config.enabled = true if params[:h5v] == 'disable'
+    end
 
 
 == Supported versions

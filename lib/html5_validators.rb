@@ -1,6 +1,16 @@
 require 'rails'
 
 module Html5Validators
+  @@enabled = true
+
+  def self.enabled
+    @@enabled
+  end
+
+  def self.enabled= enable
+    @@enabled = enable
+  end
+
   class Railtie < ::Rails::Railtie #:nodoc:
     initializer 'html5_validators' do |app|
       ActiveSupport.on_load(:active_record) do
