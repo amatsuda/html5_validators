@@ -11,6 +11,10 @@ require 'rspec/rails'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
+  if config.respond_to? :expect_with
+    config.expect_with(:rspec) { |c| c.syntax = :should }
+  end
+
   config.before :all do
     ActiveRecord::Migration.verbose = false
     CreateAllTables.up unless ActiveRecord::Base.connection.table_exists? 'people'
