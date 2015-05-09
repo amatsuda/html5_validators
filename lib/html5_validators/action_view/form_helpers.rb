@@ -2,15 +2,13 @@ module Html5Validators
   module ActionViewExtension
     def inject_required_field
       if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-        options = @options.stringify_keys
-        @options["required"] = options["required"] || object.class.attribute_required?(@method_name)
+        @options["required"] ||= @options[:required] || object.class.attribute_required?(@method_name)
       end
     end
 
     def inject_maxlength_field
       if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-        options = @options.stringify_keys
-        @options["maxlength"] = options["maxlength"] || object.class.attribute_maxlength(@method_name)
+        @options["maxlength"] ||= @options[:maxlength] || object.class.attribute_maxlength(@method_name)
       end
     end
   end
@@ -39,9 +37,8 @@ module ActionView
             inject_maxlength_field
 
             if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-              options = @options.stringify_keys
-              @options["max"] = options["maxlength"] || object.class.attribute_max(@method_name)
-              @options["min"] = options["minlength"] || object.class.attribute_min(@method_name)
+              @options["max"] ||= @options["maxlength"] || @options[:maxlength] || object.class.attribute_max(@method_name)
+              @options["min"] ||= @options["minlength"] || @options[:minlength] || object.class.attribute_min(@method_name)
             end
             render_without_html5_attributes
           end
