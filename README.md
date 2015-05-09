@@ -37,7 +37,7 @@ cancel it.
     Model:
       class User
         include ActiveModel::Validations
-        validates_length_of :name, :maximum => 10
+        validates_length_of :name, maximum: 10
       end
 
     View:
@@ -55,7 +55,7 @@ cancel it.
     Model:
       class User
         include ActiveModel::Validations
-        validates_numericality_of :age, :greater_than_or_equal_to => 20
+        validates_numericality_of :age, greater_than_or_equal_to: 20
       end
 
     View: (be sure to use number_field)
@@ -83,7 +83,7 @@ There are four ways to cancel the automatic HTML5 validation
 Set `auto_html5_validation: false` to `form_for` parameter
 
     View:
-      <%= form_for @user, :auto_html5_validation => false do |f| %>
+      <%= form_for @user, auto_html5_validation: false do |f| %>
         ...
       <% end %>
 
