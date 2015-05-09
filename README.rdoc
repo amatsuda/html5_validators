@@ -29,7 +29,7 @@ Once you bundle this gem on your app, the gem will automatically translate your 
   SPEC:
     http://dev.w3.org/html5/spec/Overview.html#attr-input-required
 
-http://img.skitch.com/20110517-8sagqrkjnmkinapmcc5tduy2b8.jpg
+https://raw.githubusercontent.com/amatsuda/html5_validators/0928dc13fdd1a7746deed9a9cf7e865e13039df8/assets/presence.png
 
 ===  LengthValidator => maxlength
 
@@ -67,7 +67,7 @@ http://img.skitch.com/20110517-8sagqrkjnmkinapmcc5tduy2b8.jpg
     http://dev.w3.org/html5/spec/Overview.html#attr-input-max
     http://dev.w3.org/html5/spec/Overview.html#attr-input-min
 
-http://img.skitch.com/20110516-n3jhu5m4gan8iy1j8er1qb7yfa.jpg
+https://raw.githubusercontent.com/amatsuda/html5_validators/0928dc13fdd1a7746deed9a9cf7e865e13039df8/assets/numericality.png
 
 
 * And more (coming soon...?)
