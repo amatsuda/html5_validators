@@ -33,6 +33,11 @@ feature 'person#new' do
 
       find('input#person_name')[:required].should be_nil
     end
+    scenario 'new_with_required_true form' do
+      visit '/people/new_with_required_true'
+
+      find('input#person_email')[:required].should == 'required'
+    end
 
     context 'disabling html5_validation in class level' do
       background do
