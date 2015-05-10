@@ -12,7 +12,7 @@ cancel it.
 
 ## Features
 
-### PresenceValidator => requried
+### PresenceValidator => required
 
     Model:
       class User
