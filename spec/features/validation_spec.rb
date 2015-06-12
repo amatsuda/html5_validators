@@ -87,3 +87,91 @@ feature 'person#new' do
     end
   end
 end
+
+feature 'item#new' do
+  context 'without validation' do
+    scenario 'new form' do
+      visit '/items/new'
+      page.should have_css('input#item_name')
+      page.should_not have_css('input#item_name[required=required]')
+    end
+
+    scenario 'new_without_html5_validation form' do
+      visit '/items/new_without_html5_validation'
+      page.should have_css('textarea#item_description')
+      page.should_not have_css('textarea#item_description[required=required]')
+    end
+  end
+
+  context 'with required validation' do
+    background do
+      Item.validates_presence_of :name, :description
+    end
+    after do
+      Item._validators.clear
+    end
+    scenario 'new form' do
+      visit '/items/new'
+
+      find('input#item_name')[:required].should == 'required'
+      find('textarea#item_description')[:required].should == 'required'
+    end
+    scenario 'new_without_html5_validation form' do
+      visit '/items/new_without_html5_validation'
+
+      find('input#item_name')[:required].should be_nil
+    end
+    scenario 'new_with_required_true form' do
+      visit '/items/new_with_required_true'
+
+      find('input#item_name')[:required].should == 'required'
+    end
+
+    context 'disabling html5_validation in class level' do
+      background do
+        Item.class_eval do |kls|
+          kls.auto_html5_validation = false
+        end
+      end
+      after do
+        Item.class_eval do |kls|
+          kls.auto_html5_validation = nil
+        end
+      end
+      scenario 'new form' do
+        visit '/items/new'
+
+        find('input#item_name')[:required].should be_nil
+      end
+    end
+
+    context 'disabling html5_validations in gem' do
+      background do
+        Html5Validators.enabled = false
+      end
+      after do
+        Html5Validators.enabled = true
+      end
+      scenario 'new form' do
+        visit '/items/new'
+
+        find('input#item_name')[:required].should be_nil
+        find('textarea#item_description')[:required].should be_nil
+      end
+    end
+  end
+
+  context 'with maxlength validation' do
+    background do
+      Item.validates_length_of :name, {:maximum => 20 }
+      Item.validates_length_of :description, {:maximum => 100}
+    end
+
+    scenario 'new form' do
+      visit '/items/new'
+
+      find('input#item_name')[:maxlength].should == '20'
+      find('textarea#item_description')[:maxlength].should == '100'
+    end
+  end
+end

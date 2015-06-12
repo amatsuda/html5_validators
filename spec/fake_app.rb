@@ -19,10 +19,27 @@ app.routes.draw do
       get :new_with_required_true
     end
   end
+  resources :items, :only => [:new, :create] do
+    collection do
+      get :new_without_html5_validation
+      get :new_with_required_true
+    end
+  end
 end
 
 # models
 class Person < ActiveRecord::Base
+end
+class Item
+  if ActiveModel::VERSION::STRING >= '4'
+    include ActiveModel::Model
+  else
+    include ActiveModel::Validations
+    include ActiveModel::Conversion
+    def persisted?; false; end
+  end
+
+  attr_accessor :name, :description
 end
 
 # controllers
@@ -53,6 +70,36 @@ ERB
     render :inline => <<-ERB
 <%= form_for @person do |f| %>
 <%= f.text_field :email, :required => true %>
+<% end %>
+    ERB
+  end
+end
+class ItemsController < ApplicationController
+  def new
+    @item = Item.new
+    render :inline => <<-ERB
+<%= form_for @item do |f| %>
+<%= f.text_field :name %>
+<%= f.text_area :description %>
+<% end %>
+ERB
+  end
+
+  def new_without_html5_validation
+    @item = Item.new
+    render :inline => <<-ERB
+<%= form_for @item, :auto_html5_validation => false do |f| %>
+<%= f.text_field :name %>
+<%= f.text_area :description %>
+<% end %>
+ERB
+  end
+
+  def new_with_required_true
+    @item = Item.new
+    render :inline => <<-ERB
+<%= form_for @item do |f| %>
+<%= f.text_field :name, :required => true %>
 <% end %>
     ERB
   end
