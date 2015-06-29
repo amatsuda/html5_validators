@@ -41,8 +41,8 @@ module ActionView
             inject_maxlength_field
 
             if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-              @options["max"] ||= @options["maxlength"] || @options[:maxlength] || object.class.attribute_max(@method_name)
-              @options["min"] ||= @options["minlength"] || @options[:minlength] || object.class.attribute_min(@method_name)
+              @options["max"] ||= @options["max"] || @options[:max] || object.class.attribute_max(@method_name)
+              @options["min"] ||= @options["min"] || @options[:min] || object.class.attribute_min(@method_name)
             end
             render_without_html5_attributes
           end
