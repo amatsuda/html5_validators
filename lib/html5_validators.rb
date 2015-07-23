@@ -22,7 +22,11 @@ module Html5Validators
         require 'html5_validators/active_record/base'
       end
       ActiveSupport.on_load(:action_view) do
-        require 'html5_validators/action_view/form_helpers'
+        if ActionPack::VERSION::STRING >= '4'
+          require 'html5_validators/action_view/form_helpers'
+        else
+          require 'html5_validators/action_view/form_helpers_rails3'
+        end
       end
     end
   end
