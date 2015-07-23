@@ -24,6 +24,7 @@ module Html5Validators
       def render
         if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
           @options["maxlength"] ||= @options[:maxlength] || object.class.attribute_maxlength(@method_name)
+          @options["minlength"] ||= @options[:minlength] || object.class.attribute_minlength(@method_name)
         end
         super
       end

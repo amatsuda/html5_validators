@@ -86,6 +86,20 @@ feature 'person#new' do
       find('textarea#person_bio')[:maxlength].should == '100'
     end
   end
+
+  context 'with minlength validation' do
+    background do
+      Person.validates_length_of :name, {:minimum => 3}
+      Person.validates_length_of :bio, {:minimum => 10}
+    end
+
+    scenario 'new form' do
+      visit '/people/new'
+
+      find('input#person_name')[:minlength].should == '3'
+      find('textarea#person_bio')[:minlength].should == '10'
+    end
+  end
 end
 
 feature 'item#new' do
@@ -172,6 +186,20 @@ feature 'item#new' do
 
       find('input#item_name')[:maxlength].should == '20'
       find('textarea#item_description')[:maxlength].should == '100'
+    end
+  end
+
+  context 'with minlength validation' do
+    background do
+      Item.validates_length_of :name, {:minimum => 3}
+      Item.validates_length_of :description, {:minimum => 10}
+    end
+
+    scenario 'new form' do
+      visit '/items/new'
+
+      find('input#item_name')[:minlength].should == '3'
+      find('textarea#item_description')[:minlength].should == '10'
     end
   end
 end
