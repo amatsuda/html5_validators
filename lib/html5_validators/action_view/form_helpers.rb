@@ -1,18 +1,18 @@
 module Html5Validators
   module ActionViewExtension
-    def inject_required_field
+    def inject_required_attribute
       if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
         @options["required"] ||= @options[:required] || object.class.attribute_required?(@method_name)
       end
     end
 
-    def inject_maxlength_field
+    def inject_maxlength_attribute
       if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
         @options["maxlength"] ||= @options[:maxlength] || object.class.attribute_maxlength(@method_name)
       end
     end
 
-    def inject_numericality_fields
+    def inject_numericality_attributes
       if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
         @options["max"] ||= @options["max"] || @options[:max] || object.class.attribute_max(@method_name)
         @options["min"] ||= @options["min"] || @options[:min] || object.class.attribute_min(@method_name)
@@ -43,9 +43,9 @@ module ActionView
 
       class TextField
         def render_with_html5_attributes
-          inject_required_field
-          inject_maxlength_field
-          inject_numericality_fields
+          inject_required_attribute
+          inject_maxlength_attribute
+          inject_numericality_attributes
 
           render_without_html5_attributes
         end
@@ -54,8 +54,8 @@ module ActionView
 
       class TextArea
         def render_with_html5_attributes
-          inject_required_field
-          inject_maxlength_field
+          inject_required_attribute
+          inject_maxlength_attribute
 
           render_without_html5_attributes
         end
@@ -66,7 +66,7 @@ module ActionView
       [RadioButton, CheckBox, Select, DateSelect, TimeZoneSelect].each do |kls|
         kls.class_eval do
           def render_with_html5_attributes
-            inject_required_field
+            inject_required_attribute
             render_without_html5_attributes
           end
           alias_method_chain :render, :html5_attributes
