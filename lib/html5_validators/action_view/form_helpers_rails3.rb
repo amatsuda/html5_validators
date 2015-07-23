@@ -18,6 +18,7 @@ module ActionView
         if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
           options["required"] ||= object.class.attribute_required?(method_name)
           options["maxlength"] ||= object.class.attribute_maxlength(method_name)
+          options["minlength"] ||= object.class.attribute_minlength(method_name)
           options["max"] ||= object.class.attribute_max(method_name)
           options["min"] ||= object.class.attribute_min(method_name)
         end
@@ -29,6 +30,7 @@ module ActionView
         if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
           options["required"] ||= object.class.attribute_required?(method_name)
           options["maxlength"] ||= object.class.attribute_maxlength(method_name)
+          options["minlength"] ||= object.class.attribute_minlength(method_name)
         end
         to_text_area_tag_without_html5_attributes options
       end
