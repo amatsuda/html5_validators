@@ -1,3 +1,4 @@
+# Legacy Rails 3.x support
 module ActionView
   module Helpers
     module FormHelper
