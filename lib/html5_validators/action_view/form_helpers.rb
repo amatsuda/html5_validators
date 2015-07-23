@@ -29,45 +29,45 @@ module ActionView
       alias_method_chain :form_for, :auto_html5_validation_option
     end
 
-      module Tags
-        class Base #:nodoc:
-          include Html5Validators::ActionViewExtension
-        end
+    module Tags
+      class Base #:nodoc:
+        include Html5Validators::ActionViewExtension
+      end
 
-        class TextField
+      class TextField
+        def render_with_html5_attributes
+          inject_required_field
+          inject_maxlength_field
+
+          if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+            @options["max"] ||= @options["max"] || @options[:max] || object.class.attribute_max(@method_name)
+            @options["min"] ||= @options["min"] || @options[:min] || object.class.attribute_min(@method_name)
+          end
+          render_without_html5_attributes
+        end
+        alias_method_chain :render, :html5_attributes
+      end
+
+      class TextArea
+        def render_with_html5_attributes
+          inject_required_field
+          inject_maxlength_field
+
+          render_without_html5_attributes
+        end
+        alias_method_chain :render, :html5_attributes
+      end
+
+      #TODO probably I have to add some more classes here
+      [RadioButton, CheckBox, Select, DateSelect, TimeZoneSelect].each do |kls|
+        kls.class_eval do
           def render_with_html5_attributes
             inject_required_field
-            inject_maxlength_field
-
-            if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-              @options["max"] ||= @options["max"] || @options[:max] || object.class.attribute_max(@method_name)
-              @options["min"] ||= @options["min"] || @options[:min] || object.class.attribute_min(@method_name)
-            end
             render_without_html5_attributes
           end
           alias_method_chain :render, :html5_attributes
-        end
-
-        class TextArea
-          def render_with_html5_attributes
-            inject_required_field
-            inject_maxlength_field
-
-            render_without_html5_attributes
-          end
-          alias_method_chain :render, :html5_attributes
-        end
-
-        #TODO probably I have to add some more classes here
-        [RadioButton, CheckBox, Select, DateSelect, TimeZoneSelect].each do |kls|
-          kls.class_eval do
-            def render_with_html5_attributes
-              inject_required_field
-              render_without_html5_attributes
-            end
-            alias_method_chain :render, :html5_attributes
-          end
         end
       end
+    end
   end
 end
