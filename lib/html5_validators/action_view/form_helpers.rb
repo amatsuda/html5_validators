@@ -11,6 +11,13 @@ module Html5Validators
         @options["maxlength"] ||= @options[:maxlength] || object.class.attribute_maxlength(@method_name)
       end
     end
+
+    def inject_numericality_fields
+      if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+        @options["max"] ||= @options["max"] || @options[:max] || object.class.attribute_max(@method_name)
+        @options["min"] ||= @options["min"] || @options[:min] || object.class.attribute_min(@method_name)
+      end
+    end
   end
 end
 
@@ -38,11 +45,8 @@ module ActionView
         def render_with_html5_attributes
           inject_required_field
           inject_maxlength_field
+          inject_numericality_fields
 
-          if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-            @options["max"] ||= @options["max"] || @options[:max] || object.class.attribute_max(@method_name)
-            @options["min"] ||= @options["min"] || @options[:min] || object.class.attribute_min(@method_name)
-          end
           render_without_html5_attributes
         end
         alias_method_chain :render, :html5_attributes
