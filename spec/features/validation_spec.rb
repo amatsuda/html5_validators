@@ -33,6 +33,11 @@ feature 'person#new' do
 
       find('input#person_name')[:required].should be_nil
     end
+    scenario 'new_without_required_html5_validation form' do
+      visit '/people/new_without_required_html5_validation'
+
+      find('input#person_name')[:required].should be_nil
+    end
     scenario 'new_with_required_true form' do
       visit '/people/new_with_required_true'
 
@@ -40,35 +45,78 @@ feature 'person#new' do
     end
 
     context 'disabling html5_validation in class level' do
-      background do
-        Person.class_eval do |kls|
-          kls.auto_html5_validation = false
+      context 'disabling all' do
+        background do
+          Person.class_eval do |kls|
+            kls.auto_html5_validation = false
+          end
         end
-      end
-      after do
-        Person.class_eval do |kls|
-          kls.auto_html5_validation = nil
+        after do
+          Person.class_eval do |kls|
+            kls.auto_html5_validation = nil
+          end
         end
-      end
-      scenario 'new form' do
-        visit '/people/new'
+        scenario 'new form' do
+          visit '/people/new'
 
-        find('input#person_name')[:required].should be_nil
+          find('input#person_name')[:required].should be_nil
+        end
+      end
+
+      context 'disabling requied only' do
+        background do
+          Person.class_eval do |kls|
+            kls.auto_html5_validation = {:required => false}
+          end
+        end
+        after do
+          Person.class_eval do |kls|
+            kls.auto_html5_validation = nil
+          end
+        end
+        scenario 'new form' do
+          visit '/people/new'
+
+          find('input#person_name')[:required].should be_nil
+        end
       end
     end
 
     context 'disabling html5_validations in gem' do
-      background do
-        Html5Validators.enabled = false
-      end
-      after do
-        Html5Validators.enabled = true
-      end
-      scenario 'new form' do
-        visit '/people/new'
+      context 'disabling all' do
+        background do
+          Html5Validators.enabled = false
+        end
+        after do
+          Html5Validators.enabled = true
+        end
+        scenario 'new form' do
+          visit '/people/new'
 
-        find('input#person_name')[:required].should be_nil
-        find('textarea#person_bio')[:required].should be_nil
+          find('input#person_name')[:required].should be_nil
+          find('textarea#person_bio')[:required].should be_nil
+        end
+      end
+
+      context 'disabling required only' do
+        background do
+          Html5Validators.configure do |config|
+            config.validation[:required] = false
+          end
+        end
+
+        after do
+          Html5Validators.configure do |config|
+            config.validation[:required] = true
+          end
+        end
+
+        scenario 'new form' do
+          visit '/items/new'
+
+          find('input#item_name')[:required].should be_nil
+          find('textarea#item_description')[:required].should be_nil
+        end
       end
     end
   end
@@ -135,6 +183,11 @@ feature 'item#new' do
 
       find('input#item_name')[:required].should be_nil
     end
+    scenario 'new_without_required_html5_validation form' do
+      visit '/items/new_without_required_html5_validation'
+
+      find('input#item_name')[:required].should be_nil
+    end
     scenario 'new_with_required_true form' do
       visit '/items/new_with_required_true'
 
@@ -142,35 +195,78 @@ feature 'item#new' do
     end
 
     context 'disabling html5_validation in class level' do
-      background do
-        Item.class_eval do |kls|
-          kls.auto_html5_validation = false
+      context 'disabling all' do
+        background do
+          Item.class_eval do |kls|
+            kls.auto_html5_validation = false
+          end
         end
-      end
-      after do
-        Item.class_eval do |kls|
-          kls.auto_html5_validation = nil
+        after do
+          Item.class_eval do |kls|
+            kls.auto_html5_validation = nil
+          end
         end
-      end
-      scenario 'new form' do
-        visit '/items/new'
+        scenario 'new form' do
+          visit '/items/new'
 
-        find('input#item_name')[:required].should be_nil
+          find('input#item_name')[:required].should be_nil
+        end
+      end
+
+      context 'disabling required only' do
+        background do
+          Item.class_eval do |kls|
+            kls.auto_html5_validation = {:required => false}
+          end
+        end
+        after do
+          Item.class_eval do |kls|
+            kls.auto_html5_validation = nil
+          end
+        end
+        scenario 'new form' do
+          visit '/items/new'
+
+          find('input#item_name')[:required].should be_nil
+        end
       end
     end
 
     context 'disabling html5_validations in gem' do
-      background do
-        Html5Validators.enabled = false
-      end
-      after do
-        Html5Validators.enabled = true
-      end
-      scenario 'new form' do
-        visit '/items/new'
+      context 'disabling all' do
+        background do
+          Html5Validators.enabled = false
+        end
+        after do
+          Html5Validators.enabled = true
+        end
+        scenario 'new form' do
+          visit '/items/new'
 
-        find('input#item_name')[:required].should be_nil
-        find('textarea#item_description')[:required].should be_nil
+          find('input#item_name')[:required].should be_nil
+          find('textarea#item_description')[:required].should be_nil
+        end
+      end
+
+      context 'disabling required only' do
+        background do
+          Html5Validators.configure do |config|
+            config.validation[:required] = false
+          end
+        end
+
+        after do
+          Html5Validators.configure do |config|
+            config.validation[:required] = true
+          end
+        end
+
+        scenario 'new form' do
+          visit '/items/new'
+
+          find('input#item_name')[:required].should be_nil
+          find('textarea#item_description')[:required].should be_nil
+        end
       end
     end
   end

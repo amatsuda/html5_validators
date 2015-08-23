@@ -3,8 +3,8 @@ module Html5Validators
     module FormHelper
       def form_for(record, options = {}, &block)
         if record.respond_to?(:auto_html5_validation=)
-          if !Html5Validators.enabled || (options[:auto_html5_validation] == false)
-            record.auto_html5_validation = false
+          if options.key?(:auto_html5_validation)
+            record.auto_html5_validation = options[:auto_html5_validation]
           end
         end
         super
@@ -13,29 +13,23 @@ module Html5Validators
 
     module PresenceValidator
       def render
-        if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-          @options["required"] ||= @options[:required] || object.class.attribute_required?(@method_name)
-        end
+        @options["required"] ||= @options[:required] || object.class.attribute_required?(@method_name) if Html5Validators.validation_enabled?(:required, object)
         super
       end
     end
 
     module LengthValidator
       def render
-        if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-          @options["maxlength"] ||= @options[:maxlength] || object.class.attribute_maxlength(@method_name)
-          @options["minlength"] ||= @options[:minlength] || object.class.attribute_minlength(@method_name)
-        end
+        @options["maxlength"] ||= @options[:maxlength] || object.class.attribute_maxlength(@method_name) if Html5Validators.validation_enabled?(:maxlength, object)
+        @options["minlength"] ||= @options[:minlength] || object.class.attribute_minlength(@method_name) if Html5Validators.validation_enabled?(:minlength, object)
         super
       end
     end
 
     module NumericalityValidator
       def render
-        if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-          @options["max"] ||= @options["max"] || @options[:max] || object.class.attribute_max(@method_name)
-          @options["min"] ||= @options["min"] || @options[:min] || object.class.attribute_min(@method_name)
-        end
+        @options["max"] ||= @options["max"] || @options[:max] || object.class.attribute_max(@method_name) if Html5Validators.validation_enabled?(:max, object)
+        @options["min"] ||= @options["min"] || @options[:min] || object.class.attribute_min(@method_name) if Html5Validators.validation_enabled?(:min, object)
         super
       end
     end

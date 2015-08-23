@@ -102,9 +102,18 @@ There are four ways to cancel the automatic HTML5 validation.
 
 Set `auto_html5_validation: false` to `form_for` parameter.
 
-* View
+* View (disabling all)
 ```erb
 <%= form_for @user, auto_html5_validation: false do |f| %>
+
+  ...
+<% end %>
+```
+
+* View (disabling specific validation)
+```erb
+<%= form_for @user, auto_html5_validation: {required: false} do |f| %>
+
   ...
 <% end %>
 ```
@@ -113,9 +122,14 @@ Set `auto_html5_validation: false` to `form_for` parameter.
 
 Set `auto_html5_validation = false` attribute to ActiveModelish object.
 
-* Controller
+* Controller (disabling all)
 ```ruby
 @user = User.new auto_html5_validation: false
+```
+
+* Controller (disabling specific validation)
+```ruby
+@user = User.new auto_html5_validation: {required: false}
 ```
 
 * View
@@ -129,10 +143,17 @@ Set `auto_html5_validation = false` attribute to ActiveModelish object.
 
 Set `auto_html5_validation = false` to ActiveModelish class variable.
 
-* Model
+* Model (disabling all)
 ```ruby
 class User < ActiveRecord::Base
   self.auto_html5_validation = false
+end
+```
+
+* Model (disabling specific validation)
+```ruby
+class User < ActiveRecord::Base
+  self.auto_html5_validation: {required: false}
 end
 ```
 
@@ -150,7 +171,18 @@ end
 
 ### 4. Globally (via HTML5Validators module configuration)
 
-Set `config.enabled = false` to Html5Validators module.
+* disabling all validation
+```ruby
+Html5Validators.enabled = false
+```
+
+* disabling specific validation
+```ruby
+Html5Validators.configure do |config|
+  config.validation[:required] = false
+end
+```
+
 Maybe you want to put this in your test_helper, or add a controller filter as
 follows for development mode.
 

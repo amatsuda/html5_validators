@@ -1,4 +1,5 @@
 require 'rails'
+require 'html5_validators/config'
 
 module Html5Validators
   @enabled = true
@@ -9,6 +10,15 @@ module Html5Validators
 
   def self.enabled=(enable)
     @enabled = enable
+  end
+
+  class << self
+    def validation_enabled?(validation, object)
+      enabled && config.validation[validation] &&
+        object.class.ancestors.include?(ActiveModel::Validations) &&
+        !(object.auto_html5_validation == false || object.auto_html5_validation.try(:[], validation) == false) &&
+        !(object.class.auto_html5_validation == false || object.class.auto_html5_validation.try(:[], validation) == false)
+    end
   end
 
   class Railtie < ::Rails::Railtie #:nodoc:
