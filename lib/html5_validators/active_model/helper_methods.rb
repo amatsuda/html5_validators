@@ -9,7 +9,7 @@ module ActiveModel
 
       def attribute_maxlength(attribute)
         self.validators.grep(LengthValidator).select {|v|
-          v.attributes.include?(attribute.to_sym) && (v.options.keys & [:maximum, :is]).any? && (v.options.keys & [:if, :unless, :allow_nil, :allow_blank, :tokenizer]).empty?
+          v.attributes.include?(attribute.to_sym) && (v.options.keys & [:maximum, :is]).any? && (v.options.keys & [:if, :unless, :tokenizer]).empty?
         }.map {|v| v.options.slice(:maximum, :is)}.map(&:values).flatten.max
       end
 
