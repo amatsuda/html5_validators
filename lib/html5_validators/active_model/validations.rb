@@ -3,7 +3,7 @@ module Html5Validators
     extend ActiveSupport::Concern
 
     included do
-      cattr_accessor :auto_html5_validation, :instance_accessor => false, :instance_reader => false, :instance_writer => false
+      cattr_accessor :auto_html5_validation, instance_accessor: false, instance_reader: false, instance_writer: false
     end
   end
 end

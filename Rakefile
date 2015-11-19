@@ -5,6 +5,6 @@ require 'rspec/core'
 require 'rspec/core/rake_task'
 
 task :noop do; end
-task :default => :spec
+task default: :spec
 
-RSpec::Core::RakeTask.new(:spec => :noop)
+RSpec::Core::RakeTask.new(spec: :noop)

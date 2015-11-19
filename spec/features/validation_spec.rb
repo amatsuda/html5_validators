@@ -75,8 +75,8 @@ feature 'person#new' do
 
   context 'with maxlength validation' do
     background do
-      Person.validates_length_of :name, {:maximum => 20}
-      Person.validates_length_of :bio, {:maximum => 100}
+      Person.validates_length_of :name, maximum: 20
+      Person.validates_length_of :bio, maximum: 100
     end
 
     scenario 'new form' do
@@ -89,8 +89,8 @@ feature 'person#new' do
 
   context 'with minlength validation' do
     background do
-      Person.validates_length_of :name, {:minimum => 3}
-      Person.validates_length_of :bio, {:minimum => 10}
+      Person.validates_length_of :name, minimum: 3
+      Person.validates_length_of :bio, minimum: 10
     end
 
     scenario 'new form' do
@@ -177,8 +177,8 @@ feature 'item#new' do
 
   context 'with maxlength validation' do
     background do
-      Item.validates_length_of :name, {:maximum => 20 }
-      Item.validates_length_of :description, {:maximum => 100}
+      Item.validates_length_of :name, maximum: 20
+      Item.validates_length_of :description, maximum: 100
     end
 
     scenario 'new form' do
@@ -191,8 +191,8 @@ feature 'item#new' do
 
   context 'with minlength validation' do
     background do
-      Item.validates_length_of :name, {:minimum => 3}
-      Item.validates_length_of :description, {:minimum => 10}
+      Item.validates_length_of :name, minimum: 3
+      Item.validates_length_of :description, minimum: 10
     end
 
     scenario 'new form' do
