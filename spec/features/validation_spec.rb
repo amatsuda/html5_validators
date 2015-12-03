@@ -100,6 +100,21 @@ feature 'person#new' do
       find('textarea#person_bio')[:minlength].should == '10'
     end
   end
+
+  context 'with validation context' do
+    background do
+      Person.validates_presence_of :name, :bio, on: :create
+    end
+    after do
+      Person._validators.clear
+    end
+    scenario 'new form' do
+      visit '/people/new'
+
+      find('input#person_name')[:required].should be_nil
+      find('textarea#person_bio')[:required].should be_nil
+    end
+  end
 end
 
 feature 'item#new' do
@@ -200,6 +215,21 @@ feature 'item#new' do
 
       find('input#item_name')[:minlength].should == '3'
       find('textarea#item_description')[:minlength].should == '10'
+    end
+  end
+
+  context 'with validation context' do
+    background do
+      Item.validates_presence_of :name, :description, on: :create
+    end
+    after do
+      Item._validators.clear
+    end
+    scenario 'new form' do
+      visit '/items/new'
+
+      find('input#item_name')[:required].should be_nil
+      find('textarea#item_description')[:required].should be_nil
     end
   end
 end
