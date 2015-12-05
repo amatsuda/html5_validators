@@ -103,7 +103,7 @@ feature 'person#new' do
 
   context 'with validation context' do
     background do
-      Person.validates_presence_of :name, :bio, on: :create
+      Person.validates_presence_of :name, :bio, {:on => :create}
     end
     after do
       Person._validators.clear
@@ -220,7 +220,7 @@ feature 'item#new' do
 
   context 'with validation context' do
     background do
-      Item.validates_presence_of :name, :description, on: :create
+      Item.validates_presence_of :name, :description, {:on => :create}
     end
     after do
       Item._validators.clear
