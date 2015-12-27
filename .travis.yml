@@ -20,25 +20,15 @@ sudo: false
 
 matrix:
   exclude:
-    - rvm: 1.8.7
-      gemfile: gemfiles/Gemfile.rails-4.0
-    - rvm: 1.8.7
-      gemfile: gemfiles/Gemfile.rails-4.1
-    - rvm: 1.8.7
-      gemfile: gemfiles/Gemfile.rails-4.2
-    - rvm: 1.8.7
-      gemfile: gemfiles/Gemfile.rails-edge
-    - rvm: 1.9.3
-      gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.0.0
       gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.1
       gemfile: gemfiles/Gemfile.rails-edge
-    - rvm: 2.2.2
+    - rvm: 2.2.4
       gemfile: gemfiles/Gemfile.rails-3.0
-    - rvm: 2.2.2
+    - rvm: 2.2.4
       gemfile: gemfiles/Gemfile.rails-3.1
-    - rvm: 2.2.2
+    - rvm: 2.2.4
       gemfile: gemfiles/Gemfile.rails-3.2
     - rvm: 2.3.0
       gemfile: gemfiles/Gemfile.rails-3.0
