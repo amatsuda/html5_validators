@@ -167,7 +167,7 @@ end
 
 ## Supported versions
 
-* Ruby 1.8.7, 1.9.2, 1.9.3, 2.0, 2.1, 2.2, 2.3, 2.4 (trunk)
+* Ruby 2.0, 2.1, 2.2, 2.3, 2.4 (trunk)
 
 * Rails 3.0.x, 3.1.x, 3.2.x, 4.0.x, 4.1, 4.2, 5.0 (edge)
 
