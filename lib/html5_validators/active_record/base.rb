@@ -7,9 +7,7 @@ module Html5Validators
 
       def inherited(kls)
         super
-        kls.class_eval do
-          cattr_accessor :auto_html5_validation, instance_accessor: false, instance_reader: false, instance_writer: false
-        end if kls.superclass == ActiveRecord::Base
+        kls.cattr_accessor :auto_html5_validation, instance_accessor: false, instance_reader: false, instance_writer: false if kls.superclass == ActiveRecord::Base
       end
     end
 
