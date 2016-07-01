@@ -12,12 +12,17 @@ gemfile:
   - gemfiles/Gemfile.rails-4.0
   - gemfiles/Gemfile.rails-4.1
   - gemfiles/Gemfile.rails-4.2
+  - gemfiles/Gemfile.rails-5.0
   - gemfiles/Gemfile.rails-edge
 
 sudo: false
 
 matrix:
   exclude:
+    - rvm: 2.0.0
+      gemfile: gemfiles/Gemfile.rails-5.0
+    - rvm: 2.1
+      gemfile: gemfiles/Gemfile.rails-5.0
     - rvm: 2.0.0
       gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.1
