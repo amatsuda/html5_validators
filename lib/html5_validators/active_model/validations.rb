@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Html5Validators
   module ActiveModelExtension
     extend ActiveSupport::Concern

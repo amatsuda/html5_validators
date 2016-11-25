@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Legacy Rails 3.x support
 module ActionView
   module Helpers
