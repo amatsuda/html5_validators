@@ -29,7 +29,10 @@ app.routes.draw do
 end
 
 # models
-class Person < ActiveRecord::Base
+class ApplicationRecord < ActiveRecord::Base
+  self.abstract_class = true
+end
+class Person < ApplicationRecord
 end
 class Item
   if ActiveModel::VERSION::STRING >= '4'

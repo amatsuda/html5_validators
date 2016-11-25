@@ -7,14 +7,20 @@ module Html5Validators
     module ClassMethods
       def inherited(kls)
         super
-        kls.cattr_accessor :auto_html5_validation, instance_accessor: false, instance_reader: false, instance_writer: false if kls.superclass == ActiveRecord::Base
+        class << kls
+          attr_accessor :auto_html5_validation
+        end
+        kls.auto_html5_validation = true
       end
     end
 
     included do
       # Existing subclasses pick up the model extension as well
       self.descendants.each do |kls|
-        kls.cattr_accessor :auto_html5_validation, instance_accessor: false, instance_reader: false, instance_writer: false if kls.superclass == ActiveRecord::Base
+        class << kls
+          attr_accessor :auto_html5_validation
+        end
+        kls.auto_html5_validation = true
       end
     end
   end

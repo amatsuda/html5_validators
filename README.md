@@ -127,7 +127,8 @@ Set `auto_html5_validation = false` attribute to ActiveModelish object.
 
 ### 3. Per model class (via model class attribute)
 
-Set `auto_html5_validation = false` to ActiveModelish class variable.
+Set `auto_html5_validation = false` to ActiveModelish class' class variable.
+This configuration will never be propagated to inherited children classes.
 
 * Model
 ```ruby
