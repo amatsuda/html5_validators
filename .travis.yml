@@ -5,6 +5,7 @@ rvm:
   - 2.1.10
   - 2.2.6
   - 2.3.3
+  - 2.4.0
   - ruby-head
 
 gemfile:
@@ -31,6 +32,14 @@ matrix:
       gemfile: gemfiles/Gemfile.rails-3.2
     - rvm: 2.3.3
       gemfile: gemfiles/Gemfile.rails-3.2
+    - rvm: 2.4.0
+      gemfile: gemfiles/Gemfile.rails-3.2
+    - rvm: 2.4.0
+      gemfile: gemfiles/Gemfile.rails-4.0
+    - rvm: 2.4.0
+      gemfile: gemfiles/Gemfile.rails-4.1
+    - rvm: 2.4.0
+      gemfile: gemfiles/Gemfile.rails-4.2
     - rvm: ruby-head
       gemfile: gemfiles/Gemfile.rails-3.2
   allow_failures:
