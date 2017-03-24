@@ -114,6 +114,7 @@ module ApplicationHelper; end
 
 #migrations
 class CreateAllTables < ActiveRecord::Migration
+class CreateAllTables < ActiveRecord::VERSION::MAJOR >= 5 ? ActiveRecord::Migration[5.0] : ActiveRecord::Migration
   def self.up
     create_table :people do |t|
       t.string :name
