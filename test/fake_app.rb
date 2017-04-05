@@ -18,12 +18,14 @@ app.routes.draw do
     collection do
       get :new_without_html5_validation
       get :new_with_required_true
+      get :new_with_required_false
     end
   end
   resources :items, only: [:new, :create] do
     collection do
       get :new_without_html5_validation
       get :new_with_required_true
+      get :new_with_required_false
     end
   end
 end
@@ -77,6 +79,15 @@ ERB
 <% end %>
     ERB
   end
+
+  def new_with_required_false
+    @person = Person.new
+    render inline: <<-ERB
+<%= form_for @person do |f| %>
+<%= f.text_field :email, required: false %>
+<% end %>
+    ERB
+  end
 end
 class ItemsController < ApplicationController
   def new
@@ -104,6 +115,15 @@ ERB
     render inline: <<-ERB
 <%= form_for @item do |f| %>
 <%= f.text_field :name, required: true %>
+<% end %>
+    ERB
+  end
+
+  def new_with_required_false
+    @item = Item.new
+    render inline: <<-ERB
+<%= form_for @item do |f| %>
+<%= f.text_field :name, required: false %>
 <% end %>
     ERB
   end
