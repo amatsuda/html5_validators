@@ -39,7 +39,11 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
 
       assert_equal 'required', find('input#person_email')[:required]
     end
+    test 'new_with_required_false form' do
+      visit '/people/new_with_required_false'
 
+      assert_nil find('input#person_email')[:required]
+    end
     sub_test_case 'disabling html5_validation in class level' do
       setup do
         Person.class_eval do |kls|
@@ -141,7 +145,11 @@ class ActiveModelValidationTest < ActionDispatch::IntegrationTest
 
       assert_equal 'required', find('input#item_name')[:required]
     end
+    test 'new_with_required_false form' do
+      visit '/items/new_with_required_false'
 
+      assert_nil find('input#item_name')[:required]
+    end
     sub_test_case 'disabling html5_validation in class level' do
       setup do
         Item.class_eval do |kls|

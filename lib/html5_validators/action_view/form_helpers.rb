@@ -15,7 +15,7 @@ module Html5Validators
     module PresenceValidator
       def render
         if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-          @options["required"] ||= @options[:required] || object.class.attribute_required?(@method_name)
+          @options["required"] ||= @options.fetch(:required) { object.class.attribute_required?(@method_name) }
         end
         super
       end
