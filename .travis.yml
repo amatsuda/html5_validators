@@ -6,6 +6,7 @@ rvm:
   - 2.2.7
   - 2.3.4
   - 2.4.1
+  - 2.5.1
   - ruby-head
 
 gemfile:
@@ -44,6 +45,14 @@ matrix:
     - rvm: 2.4.1
       gemfile: gemfiles/Gemfile.rails-4.1
     - rvm: 2.4.1
+      gemfile: gemfiles/Gemfile.rails-4.2
+    - rvm: 2.5.1
+      gemfile: gemfiles/Gemfile.rails-3.2
+    - rvm: 2.5.1
+      gemfile: gemfiles/Gemfile.rails-4.0
+    - rvm: 2.5.1
+      gemfile: gemfiles/Gemfile.rails-4.1
+    - rvm: 2.5.1
       gemfile: gemfiles/Gemfile.rails-4.2
     - rvm: ruby-head
       gemfile: gemfiles/Gemfile.rails-3.2
