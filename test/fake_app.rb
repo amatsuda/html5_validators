@@ -5,15 +5,16 @@ require 'action_controller/railtie'
 # config
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
 
-app = Class.new(Rails::Application)
-app.config.secret_token = "You know I'm born to lose, and gambling's for fools, But that's the way I like it baby, I don't wanna live for ever, And don't forget the joker!"
-app.config.session_store :cookie_store, key: '_myapp_session'
-app.config.active_support.deprecation = :log
-app.config.eager_load = false
-app.initialize!
+class Html5ValidatorsTestApp < Rails::Application
+  config.secret_token = "You know I'm born to lose, and gambling's for fools, But that's the way I like it baby, I don't wanna live for ever, And don't forget the joker!"
+  config.session_store :cookie_store, key: '_myapp_session'
+  config.active_support.deprecation = :log
+  config.eager_load = false
+end
+Rails.application.initialize!
 
 # routes
-app.routes.draw do
+Rails.application.routes.draw do
   resources :people, only: [:new, :create] do
     collection do
       get :new_without_html5_validation
