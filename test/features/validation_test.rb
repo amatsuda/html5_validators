@@ -107,6 +107,30 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
       assert_equal '10', find('textarea#person_bio')[:minlength]
     end
   end
+
+  sub_test_case 'validation with context' do
+    sub_test_case 'with an active context' do
+      setup do
+        Person.validates_presence_of :name, on: :create
+      end
+      test 'new form' do
+        visit '/people/new'
+
+        assert_equal 'required', find('input#person_name')[:required]
+      end
+    end
+
+    sub_test_case 'without an active context' do
+      setup do
+        Person.validates_presence_of :name, on: :update
+      end
+      test 'new form' do
+        visit '/people/new'
+
+        assert_nil find('input#person_name')[:required]
+      end
+    end
+  end
 end
 
 class ActiveModelValidationTest < ActionDispatch::IntegrationTest
