@@ -2,6 +2,10 @@
 require 'test_helper'
 
 class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
+  teardown do
+    Person._validators.clear
+  end
+
   sub_test_case 'without validation' do
     test 'new form' do
       visit '/people/new'
@@ -19,9 +23,6 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
   sub_test_case 'with required validation' do
     setup do
       Person.validates_presence_of :name, :bio
-    end
-    teardown do
-      Person._validators.clear
     end
     test 'new form' do
       visit '/people/new'
@@ -108,6 +109,10 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
 end
 
 class ActiveModelValidationTest < ActionDispatch::IntegrationTest
+  teardown do
+    Item._validators.clear
+  end
+
   sub_test_case 'without validation' do
     test 'new form' do
       visit '/items/new'
@@ -125,9 +130,6 @@ class ActiveModelValidationTest < ActionDispatch::IntegrationTest
   sub_test_case 'with required validation' do
     setup do
       Item.validates_presence_of :name, :description
-    end
-    teardown do
-      Item._validators.clear
     end
     test 'new form' do
       visit '/items/new'
