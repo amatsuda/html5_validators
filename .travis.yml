@@ -40,6 +40,10 @@ matrix:
     - rvm: 2.1.10
       gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.2.10
+      gemfile: gemfiles/Gemfile.rails-edge
+    - rvm: 2.3.7
+      gemfile: gemfiles/Gemfile.rails-edge
+    - rvm: 2.2.10
       gemfile: gemfiles/Gemfile.rails-3.2
     - rvm: 2.3.7
       gemfile: gemfiles/Gemfile.rails-3.2
