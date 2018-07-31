@@ -3,9 +3,9 @@ language: ruby
 rvm:
   - 2.0.0
   - 2.1.10
-  - 2.2.7
-  - 2.3.4
-  - 2.4.1
+  - 2.2.10
+  - 2.3.7
+  - 2.4.4
   - 2.5.1
   - ruby-head
 
@@ -39,17 +39,17 @@ matrix:
       gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.1.10
       gemfile: gemfiles/Gemfile.rails-edge
-    - rvm: 2.2.7
+    - rvm: 2.2.10
       gemfile: gemfiles/Gemfile.rails-3.2
-    - rvm: 2.3.4
+    - rvm: 2.3.7
       gemfile: gemfiles/Gemfile.rails-3.2
-    - rvm: 2.4.1
+    - rvm: 2.4.4
       gemfile: gemfiles/Gemfile.rails-3.2
-    - rvm: 2.4.1
+    - rvm: 2.4.4
       gemfile: gemfiles/Gemfile.rails-4.0
-    - rvm: 2.4.1
+    - rvm: 2.4.4
       gemfile: gemfiles/Gemfile.rails-4.1
-    - rvm: 2.4.1
+    - rvm: 2.4.4
       gemfile: gemfiles/Gemfile.rails-4.2
     - rvm: 2.5.1
       gemfile: gemfiles/Gemfile.rails-3.2
