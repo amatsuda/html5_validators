@@ -112,11 +112,13 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
     sub_test_case 'with an active context' do
       setup do
         Person.validates_presence_of :name, on: :create
+        Person.validates_length_of :bio, maximum: 100, on: :create
       end
       test 'new form' do
         visit '/people/new'
 
         assert_equal 'required', find('input#person_name')[:required]
+        assert_equal '100', find('textarea#person_bio')[:maxlength]
       end
     end
 
@@ -128,6 +130,7 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
         visit '/people/new'
 
         assert_nil find('input#person_name')[:required]
+        assert_nil find('textarea#person_bio')[:maxlength]
       end
     end
   end
