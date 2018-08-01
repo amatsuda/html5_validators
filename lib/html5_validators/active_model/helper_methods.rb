@@ -9,7 +9,7 @@ module Html5Validators
         end
       end
     end
-    refine ::ActiveModel::Validations::HelperMethods do
+    refine Object do
       def default_validation_context
         nil
       end
