@@ -17,11 +17,11 @@ module Html5Validators
   end
 end
 
+using Html5Validators::DafaultValidationContext
+
 module ActiveModel
   module Validations
     module HelperMethods
-      using Html5Validators::DafaultValidationContext
-
       def attribute_required?(attribute)
         self.class.validators.grep(PresenceValidator).any? do |v|
           if v.attributes.include?(attribute.to_sym) && (v.options.keys & [:if, :unless]).empty?
