@@ -7,7 +7,7 @@ module ActiveModel
         self.class.validators.grep(PresenceValidator).any? do |v|
           if v.attributes.include?(attribute.to_sym) && (v.options.keys & [:if, :unless]).empty?
             if (on = v.options[:on]) && respond_to?(:default_validation_context, true)
-              Array(on).include? send(:default_validation_context)
+              Array(on).include? default_validation_context
             else
               true
             end
@@ -19,7 +19,7 @@ module ActiveModel
         self.class.validators.grep(LengthValidator).select {|v|
           if v.attributes.include?(attribute.to_sym) && (v.options.keys & [:maximum, :is]).any? && (v.options.keys & [:if, :unless, :tokenizer]).empty?
             if (on = v.options[:on]) && respond_to?(:default_validation_context, true)
-              v if Array(on).include? send(:default_validation_context)
+              v if Array(on).include? default_validation_context
             else
               v
             end
@@ -31,7 +31,7 @@ module ActiveModel
         self.class.validators.grep(LengthValidator).select {|v|
           if v.attributes.include?(attribute.to_sym) && (v.options.keys & [:minimum, :is]).any? && (v.options.keys & [:if, :unless, :allow_nil, :allow_blank, :tokenizer]).empty?
             if (on = v.options[:on]) && respond_to?(:default_validation_context, true)
-              v if Array(on).include? send(:default_validation_context)
+              v if Array(on).include? default_validation_context
             else
               v
             end
@@ -43,7 +43,7 @@ module ActiveModel
         self.class.validators.grep(NumericalityValidator).select {|v|
           if v.attributes.include?(attribute.to_sym) && (v.options.keys & [:less_than, :less_than_or_equal_to]).any? && (v.options.keys & [:if, :unless, :allow_nil, :allow_blank]).empty?
             if (on = v.options[:on]) && respond_to?(:default_validation_context, true)
-              v if Array(on).include? send(:default_validation_context)
+              v if Array(on).include? default_validation_context
             else
               v
             end
@@ -55,7 +55,7 @@ module ActiveModel
         self.class.validators.grep(NumericalityValidator).select {|v|
           if v.attributes.include?(attribute.to_sym) && (v.options.keys & [:greater_than, :greater_than_or_equal_to]).any? && (v.options.keys & [:if, :unless, :allow_nil, :allow_blank]).empty?
             if (on = v.options[:on]) && respond_to?(:default_validation_context, true)
-              v if Array(on).include? send(:default_validation_context)
+              v if Array(on).include? default_validation_context
             else
               v
             end
