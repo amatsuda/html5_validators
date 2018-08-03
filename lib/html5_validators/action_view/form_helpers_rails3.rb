@@ -18,11 +18,11 @@ module ActionView
     class InstanceTag
       def to_input_field_tag_with_html5_attributes(field_type, options = {})
         if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-          options["required"] ||= object.class.attribute_required?(method_name)
-          options["maxlength"] ||= object.class.attribute_maxlength(method_name)
-          options["minlength"] ||= object.class.attribute_minlength(method_name)
-          options["max"] ||= object.class.attribute_max(method_name)
-          options["min"] ||= object.class.attribute_min(method_name)
+          options["required"] ||= object.attribute_required?(method_name)
+          options["maxlength"] ||= object.attribute_maxlength(method_name)
+          options["minlength"] ||= object.attribute_minlength(method_name)
+          options["max"] ||= object.attribute_max(method_name)
+          options["min"] ||= object.attribute_min(method_name)
         end
         to_input_field_tag_without_html5_attributes field_type, options
       end
@@ -30,9 +30,9 @@ module ActionView
 
       def to_text_area_tag_with_html5_attributes(options = {})
         if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-          options["required"] ||= object.class.attribute_required?(method_name)
-          options["maxlength"] ||= object.class.attribute_maxlength(method_name)
-          options["minlength"] ||= object.class.attribute_minlength(method_name)
+          options["required"] ||= object.attribute_required?(method_name)
+          options["maxlength"] ||= object.attribute_maxlength(method_name)
+          options["minlength"] ||= object.attribute_minlength(method_name)
         end
         to_text_area_tag_without_html5_attributes options
       end
@@ -40,7 +40,7 @@ module ActionView
 
       def to_radio_button_tag_with_html5_attributes(tag_value, options = {})
         if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-          options["required"] ||= object.class.attribute_required?(method_name)
+          options["required"] ||= object.attribute_required?(method_name)
         end
         to_radio_button_tag_without_html5_attributes tag_value, options
       end
@@ -48,7 +48,7 @@ module ActionView
 
       def to_check_box_tag_with_html5_attributes(options = {}, checked_value = "1", unchecked_value = "0")
         if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
-          options["required"] ||= object.class.attribute_required?(method_name)
+          options["required"] ||= object.attribute_required?(method_name)
         end
         to_check_box_tag_without_html5_attributes options, checked_value, unchecked_value
       end
