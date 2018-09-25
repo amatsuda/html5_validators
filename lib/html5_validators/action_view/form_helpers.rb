@@ -15,7 +15,7 @@ module Html5Validators
 
     module PresenceValidator
       def render
-        if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+        if object.is_a?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
           @options["required"] ||= @options.fetch(:required) { object.attribute_required?(@method_name) }
         end
         super
@@ -24,7 +24,7 @@ module Html5Validators
 
     module LengthValidator
       def render
-        if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+        if object.is_a?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
           @options["maxlength"] ||= @options[:maxlength] || object.attribute_maxlength(@method_name)
           @options["minlength"] ||= @options[:minlength] || object.attribute_minlength(@method_name)
         end
@@ -34,7 +34,7 @@ module Html5Validators
 
     module NumericalityValidator
       def render
-        if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+        if object.is_a?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
           @options["max"] ||= @options["max"] || @options[:max] || object.attribute_max(@method_name)
           @options["min"] ||= @options["min"] || @options[:min] || object.attribute_min(@method_name)
         end

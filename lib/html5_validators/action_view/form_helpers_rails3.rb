@@ -17,7 +17,7 @@ module ActionView
 
     class InstanceTag
       def to_input_field_tag_with_html5_attributes(field_type, options = {})
-        if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+        if object.is_a?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
           options["required"] ||= object.attribute_required?(method_name)
           options["maxlength"] ||= object.attribute_maxlength(method_name)
           options["minlength"] ||= object.attribute_minlength(method_name)
@@ -29,7 +29,7 @@ module ActionView
       alias_method_chain :to_input_field_tag, :html5_attributes
 
       def to_text_area_tag_with_html5_attributes(options = {})
-        if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+        if object.is_a?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
           options["required"] ||= object.attribute_required?(method_name)
           options["maxlength"] ||= object.attribute_maxlength(method_name)
           options["minlength"] ||= object.attribute_minlength(method_name)
@@ -39,7 +39,7 @@ module ActionView
       alias_method_chain :to_text_area_tag, :html5_attributes
 
       def to_radio_button_tag_with_html5_attributes(tag_value, options = {})
-        if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+        if object.is_a?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
           options["required"] ||= object.attribute_required?(method_name)
         end
         to_radio_button_tag_without_html5_attributes tag_value, options
@@ -47,7 +47,7 @@ module ActionView
       alias_method_chain :to_radio_button_tag, :html5_attributes
 
       def to_check_box_tag_with_html5_attributes(options = {}, checked_value = "1", unchecked_value = "0")
-        if object.class.ancestors.include?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+        if object.is_a?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
           options["required"] ||= object.attribute_required?(method_name)
         end
         to_check_box_tag_without_html5_attributes options, checked_value, unchecked_value
