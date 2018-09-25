@@ -1,5 +1,10 @@
 language: ruby
 
+sudo: required
+
+addons:
+  chrome: stable
+
 before_install:
   - gem install bundler
 
@@ -21,8 +26,6 @@ gemfile:
   - gemfiles/Gemfile.rails-5.1
   - gemfiles/Gemfile.rails-5.2
   - gemfiles/Gemfile.rails-edge
-
-sudo: false
 
 matrix:
   exclude:
