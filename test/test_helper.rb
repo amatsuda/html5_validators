@@ -10,7 +10,7 @@ require 'capybara'
 require "selenium/webdriver"
 
 Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(chrome_options: {args: ['headless', 'disable-gpu']}))
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(chrome_options: {args: ['headless', 'disable-gpu', 'no-sandbox']}))
 end
 Capybara.default_driver = :selenium
 
