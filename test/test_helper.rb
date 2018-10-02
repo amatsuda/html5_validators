@@ -6,6 +6,13 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rails'
 require 'bundler/setup'
 Bundler.require
+require 'capybara'
+require "selenium/webdriver"
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(chrome_options: {args: ['headless', 'disable-gpu']}))
+end
+Capybara.default_driver = :selenium
 
 # needs to load the app before loading rspec/rails => capybara
 require 'fake_app'
