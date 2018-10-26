@@ -2,8 +2,6 @@ language: ruby
 
 sudo: required
 
-dist: xenial
-
 addons:
   chrome: stable
 
