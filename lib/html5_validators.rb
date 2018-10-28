@@ -5,12 +5,8 @@ require 'rails'
 module Html5Validators
   @enabled = true
 
-  def self.enabled
-    @enabled
-  end
-
-  def self.enabled=(enable)
-    @enabled = enable
+  class << self
+    attr_accessor :enabled
   end
 
   class Railtie < ::Rails::Railtie #:nodoc:
