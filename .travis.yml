@@ -32,53 +32,53 @@ gemfile:
 
 matrix:
   exclude:
-    - rvm: 2.0.0
-      gemfile: gemfiles/Gemfile.rails-5.0
-    - rvm: 2.1.10
-      gemfile: gemfiles/Gemfile.rails-5.0
-    - rvm: 2.0.0
-      gemfile: gemfiles/Gemfile.rails-5.1
-    - rvm: 2.1.10
-      gemfile: gemfiles/Gemfile.rails-5.1
-    - rvm: 2.0.0
-      gemfile: gemfiles/Gemfile.rails-5.2
-    - rvm: 2.1.10
-      gemfile: gemfiles/Gemfile.rails-5.2
-    - rvm: 2.0.0
-      gemfile: gemfiles/Gemfile.rails-edge
-    - rvm: 2.1.10
-      gemfile: gemfiles/Gemfile.rails-edge
-    - rvm: 2.2.10
-      gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.3.7
       gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.2.10
+      gemfile: gemfiles/Gemfile.rails-edge
+    - rvm: 2.1.10
+      gemfile: gemfiles/Gemfile.rails-edge
+    - rvm: 2.0.0
+      gemfile: gemfiles/Gemfile.rails-edge
+    - rvm: 2.1.10
+      gemfile: gemfiles/Gemfile.rails-5.2
+    - rvm: 2.0.0
+      gemfile: gemfiles/Gemfile.rails-5.2
+    - rvm: 2.1.10
+      gemfile: gemfiles/Gemfile.rails-5.1
+    - rvm: 2.0.0
+      gemfile: gemfiles/Gemfile.rails-5.1
+    - rvm: 2.1.10
+      gemfile: gemfiles/Gemfile.rails-5.0
+    - rvm: 2.0.0
+      gemfile: gemfiles/Gemfile.rails-5.0
+    - rvm: ruby-head
+      gemfile: gemfiles/Gemfile.rails-4.2
+    - rvm: 2.5.1
+      gemfile: gemfiles/Gemfile.rails-4.2
+    - rvm: 2.4.4
+      gemfile: gemfiles/Gemfile.rails-4.2
+    - rvm: ruby-head
+      gemfile: gemfiles/Gemfile.rails-4.1
+    - rvm: 2.5.1
+      gemfile: gemfiles/Gemfile.rails-4.1
+    - rvm: 2.4.4
+      gemfile: gemfiles/Gemfile.rails-4.1
+    - rvm: ruby-head
+      gemfile: gemfiles/Gemfile.rails-4.0
+    - rvm: 2.5.1
+      gemfile: gemfiles/Gemfile.rails-4.0
+    - rvm: 2.4.4
+      gemfile: gemfiles/Gemfile.rails-4.0
+    - rvm: ruby-head
+      gemfile: gemfiles/Gemfile.rails-3.2
+    - rvm: 2.5.1
+      gemfile: gemfiles/Gemfile.rails-3.2
+    - rvm: 2.4.4
       gemfile: gemfiles/Gemfile.rails-3.2
     - rvm: 2.3.7
       gemfile: gemfiles/Gemfile.rails-3.2
-    - rvm: 2.4.4
+    - rvm: 2.2.10
       gemfile: gemfiles/Gemfile.rails-3.2
-    - rvm: 2.4.4
-      gemfile: gemfiles/Gemfile.rails-4.0
-    - rvm: 2.4.4
-      gemfile: gemfiles/Gemfile.rails-4.1
-    - rvm: 2.4.4
-      gemfile: gemfiles/Gemfile.rails-4.2
-    - rvm: 2.5.1
-      gemfile: gemfiles/Gemfile.rails-3.2
-    - rvm: 2.5.1
-      gemfile: gemfiles/Gemfile.rails-4.0
-    - rvm: 2.5.1
-      gemfile: gemfiles/Gemfile.rails-4.1
-    - rvm: 2.5.1
-      gemfile: gemfiles/Gemfile.rails-4.2
-    - rvm: ruby-head
-      gemfile: gemfiles/Gemfile.rails-3.2
-    - rvm: ruby-head
-      gemfile: gemfiles/Gemfile.rails-4.0
-    - rvm: ruby-head
-      gemfile: gemfiles/Gemfile.rails-4.1
-    - rvm: ruby-head
-      gemfile: gemfiles/Gemfile.rails-4.2
   allow_failures:
     - rvm: ruby-head
