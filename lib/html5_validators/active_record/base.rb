@@ -17,7 +17,7 @@ module Html5Validators
 
     included do
       # Existing subclasses pick up the model extension as well
-      self.descendants.each do |kls|
+      descendants.each do |kls|
         class << kls
           attr_accessor :auto_html5_validation
         end
