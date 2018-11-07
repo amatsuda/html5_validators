@@ -3,6 +3,8 @@
 require 'test_helper'
 
 class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
+  FORM_ID_LIST = %w[#form_for #form_with].freeze
+
   teardown do
     Person._validators.clear
   end
@@ -10,14 +12,18 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
   sub_test_case 'without validation' do
     test 'new form' do
       visit '/people/new'
-      assert page.has_css? 'input#person_name'
-      assert page.has_no_css? 'input#person_name[required=required]'
+      FORM_ID_LIST.each do |form|
+        assert page.has_css? "#{form} input#person_name"
+        assert page.has_no_css? "#{form} input#person_name[required=required]"
+      end
     end
 
     test 'new_without_html5_validation form' do
       visit '/people/new_without_html5_validation'
-      assert page.has_css? 'input#person_email'
-      assert page.has_no_css? 'input#person_email[required=required]'
+      FORM_ID_LIST.each do |form|
+        assert page.has_css? "#{form} input#person_email"
+        assert page.has_no_css? "#{form} input#person_email[required=required]"
+      end
     end
   end
 
@@ -27,24 +33,28 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
     end
     test 'new form' do
       visit '/people/new'
-
-      assert_equal 'required', find('input#person_name')[:required]
-      assert_equal 'required', find('textarea#person_bio')[:required]
+      FORM_ID_LIST.each do |form|
+        assert_equal 'required', find("#{form} input#person_name")[:required]
+        assert_equal 'required', find("#{form} textarea#person_bio")[:required]
+      end
     end
     test 'new_without_html5_validation form' do
       visit '/people/new_without_html5_validation'
-
-      assert_nil find('input#person_name')[:required]
+      FORM_ID_LIST.each do |form|
+        assert_nil find("#{form} input#person_name")[:required]
+      end
     end
     test 'new_with_required_true form' do
       visit '/people/new_with_required_true'
-
-      assert_equal 'required', find('input#person_email')[:required]
+      FORM_ID_LIST.each do |form|
+        assert_equal 'required', find("#{form} input#person_email")[:required]
+      end
     end
     test 'new_with_required_false form' do
       visit '/people/new_with_required_false'
-
-      assert_nil find('input#person_email')[:required]
+      FORM_ID_LIST.each do |form|
+        assert_nil find("#{form} input#person_email")[:required]
+      end
     end
     sub_test_case 'disabling html5_validation in class level' do
       setup do
@@ -59,8 +69,9 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
       end
       test 'new form' do
         visit '/people/new'
-
-        assert_nil find('input#person_name')[:required]
+        FORM_ID_LIST.each do |form|
+          assert_nil find("#{form} input#person_name")[:required]
+        end
       end
     end
 
@@ -73,9 +84,10 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
       end
       test 'new form' do
         visit '/people/new'
-
-        assert_nil find('input#person_name')[:required]
-        assert_nil find('textarea#person_bio')[:required]
+        FORM_ID_LIST.each do |form|
+          assert_nil find("#{form} input#person_name")[:required]
+          assert_nil find("#{form} textarea#person_bio")[:required]
+        end
       end
     end
   end
@@ -88,9 +100,10 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
 
     test 'new form' do
       visit '/people/new'
-
-      assert_equal '20', find('input#person_name')[:maxlength]
-      assert_equal '100', find('textarea#person_bio')[:maxlength]
+      FORM_ID_LIST.each do |form|
+        assert_equal '20', find("#{form} input#person_name")[:maxlength]
+        assert_equal '100', find("#{form} textarea#person_bio")[:maxlength]
+      end
     end
   end
 
@@ -102,9 +115,10 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
 
     test 'new form' do
       visit '/people/new'
-
-      assert_equal '3', find('input#person_name')[:minlength]
-      assert_equal '10', find('textarea#person_bio')[:minlength]
+      FORM_ID_LIST.each do |form|
+        assert_equal '3', find("#{form} input#person_name")[:minlength]
+        assert_equal '10', find("#{form} textarea#person_bio")[:minlength]
+      end
     end
   end
 
@@ -116,9 +130,10 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
       end
       test 'new form' do
         visit '/people/new'
-
-        assert_equal 'required', find('input#person_name')[:required]
-        assert_equal '100', find('textarea#person_bio')[:maxlength]
+        FORM_ID_LIST.each do |form|
+          assert_equal 'required', find("#{form} input#person_name")[:required]
+          assert_equal '100', find("#{form} textarea#person_bio")[:maxlength]
+        end
       end
     end
 
@@ -128,9 +143,10 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
       end
       test 'new form' do
         visit '/people/new'
-
-        assert_nil find('input#person_name')[:required]
-        assert_nil find('textarea#person_bio')[:maxlength]
+        FORM_ID_LIST.each do |form|
+          assert_nil find("#{form} input#person_name")[:required]
+          assert_nil find("#{form} textarea#person_bio")[:maxlength]
+        end
       end
     end
   end

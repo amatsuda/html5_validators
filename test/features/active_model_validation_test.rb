@@ -3,6 +3,8 @@
 require 'test_helper'
 
 class ActiveModelValidationTest < ActionDispatch::IntegrationTest
+  FORM_ID_LIST = %w[#form_for #form_with].freeze
+
   teardown do
     Item._validators.clear
   end
@@ -10,14 +12,18 @@ class ActiveModelValidationTest < ActionDispatch::IntegrationTest
   sub_test_case 'without validation' do
     test 'new form' do
       visit '/items/new'
-      assert page.has_css? 'input#item_name'
-      assert page.has_no_css? 'input#item_name[required=required]'
+      FORM_ID_LIST.each do |form|
+        assert page.has_css? "#{form} input#item_name"
+        assert page.has_no_css? "#{form} input#item_name[required=required]"
+      end
     end
 
     test 'new_without_html5_validation form' do
       visit '/items/new_without_html5_validation'
-      assert page.has_css? 'textarea#item_description'
-      assert page.has_no_css? 'textarea#item_description[required=required]'
+      FORM_ID_LIST.each do |form|
+        assert page.has_css? "#{form} textarea#item_description"
+        assert page.has_no_css? "#{form} textarea#item_description[required=required]"
+      end
     end
   end
 
@@ -27,24 +33,28 @@ class ActiveModelValidationTest < ActionDispatch::IntegrationTest
     end
     test 'new form' do
       visit '/items/new'
-
-      assert_equal 'required', find('input#item_name')[:required]
-      assert_equal 'required', find('textarea#item_description')[:required]
+      FORM_ID_LIST.each do |form|
+        assert_equal 'required', find("#{form} input#item_name")[:required]
+        assert_equal 'required', find("#{form} textarea#item_description")[:required]
+      end
     end
     test 'new_without_html5_validation form' do
       visit '/items/new_without_html5_validation'
-
-      assert_nil find('input#item_name')[:required]
+      FORM_ID_LIST.each do |form|
+        assert_nil find("#{form} input#item_name")[:required]
+      end
     end
     test 'new_with_required_true form' do
       visit '/items/new_with_required_true'
-
-      assert_equal 'required', find('input#item_name')[:required]
+      FORM_ID_LIST.each do |form|
+        assert_equal 'required', find("#{form} input#item_name")[:required]
+      end
     end
     test 'new_with_required_false form' do
       visit '/items/new_with_required_false'
-
-      assert_nil find('input#item_name')[:required]
+      FORM_ID_LIST.each do |form|
+        assert_nil find("#{form} input#item_name")[:required]
+      end
     end
     sub_test_case 'disabling html5_validation in class level' do
       setup do
@@ -59,8 +69,9 @@ class ActiveModelValidationTest < ActionDispatch::IntegrationTest
       end
       test 'new form' do
         visit '/items/new'
-
-        assert_nil find('input#item_name')[:required]
+        FORM_ID_LIST.each do |form|
+          assert_nil find("#{form} input#item_name")[:required]
+        end
       end
     end
 
@@ -73,9 +84,10 @@ class ActiveModelValidationTest < ActionDispatch::IntegrationTest
       end
       test 'new form' do
         visit '/items/new'
-
-        assert_nil find('input#item_name')[:required]
-        assert_nil find('textarea#item_description')[:required]
+        FORM_ID_LIST.each do |form|
+          assert_nil find("#{form} input#item_name")[:required]
+          assert_nil find("#{form} textarea#item_description")[:required]
+        end
       end
     end
   end
@@ -88,9 +100,10 @@ class ActiveModelValidationTest < ActionDispatch::IntegrationTest
 
     test 'new form' do
       visit '/items/new'
-
-      assert_equal '20', find('input#item_name')[:maxlength]
-      assert_equal '100', find('textarea#item_description')[:maxlength]
+      FORM_ID_LIST.each do |form|
+        assert_equal '20', find("#{form} input#item_name")[:maxlength]
+        assert_equal '100', find("#{form} textarea#item_description")[:maxlength]
+      end
     end
   end
 
@@ -102,9 +115,10 @@ class ActiveModelValidationTest < ActionDispatch::IntegrationTest
 
     test 'new form' do
       visit '/items/new'
-
-      assert_equal '3', find('input#item_name')[:minlength]
-      assert_equal '10', find('textarea#item_description')[:minlength]
+      FORM_ID_LIST.each do |form|
+        assert_equal '3', find("#{form} input#item_name")[:minlength]
+        assert_equal '10', find("#{form} textarea#item_description")[:minlength]
+      end
     end
   end
 end
