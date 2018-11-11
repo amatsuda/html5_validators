@@ -61,9 +61,11 @@ class PeopleController < ApplicationController
 <%= f.text_area :bio %>
 <% end %>
 
+<% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @person, id: 'form_with' do |f| %>
 <%= f.text_field :name, id: 'person_name' %>
 <%= f.text_area :bio, id: 'person_bio' %>
+<% end %>
 <% end %>
     ERB
   end
@@ -76,9 +78,11 @@ class PeopleController < ApplicationController
 <%= f.text_field :email %>
 <% end %>
 
+<% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @person, id: 'form_with', auto_html5_validation: false do |f| %>
 <%= f.text_field :name, id: 'person_name' %>
 <%= f.text_field :email, id: 'person_email' %>
+<% end %>
 <% end %>
     ERB
   end
@@ -90,8 +94,10 @@ class PeopleController < ApplicationController
 <%= f.text_field :email, required: true %>
 <% end %>
 
+<% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @person, id: 'form_with' do |f| %>
 <%= f.text_field :email, required: true, id: 'person_email' %>
+<% end %>
 <% end %>
     ERB
   end
@@ -103,8 +109,10 @@ class PeopleController < ApplicationController
 <%= f.text_field :email, required: false %>
 <% end %>
 
+<% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @person, id: 'form_with' do |f| %>
 <%= f.text_field :email, required: false, id: 'person_email' %>
+<% end %>
 <% end %>
     ERB
   end
@@ -118,9 +126,11 @@ class ItemsController < ApplicationController
 <%= f.text_area :description %>
 <% end %>
 
+<% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @item, id: 'form_with' do |f| %>
 <%= f.text_field :name, id: 'item_name' %>
 <%= f.text_area :description, id: 'item_description' %>
+<% end %>
 <% end %>
     ERB
   end
@@ -133,9 +143,11 @@ class ItemsController < ApplicationController
 <%= f.text_area :description %>
 <% end %>
 
+<% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @item, id: 'form_with', auto_html5_validation: false do |f| %>
 <%= f.text_field :name, id: 'item_name' %>
 <%= f.text_area :description, id: 'item_description' %>
+<% end %>
 <% end %>
     ERB
   end
@@ -147,8 +159,10 @@ class ItemsController < ApplicationController
 <%= f.text_field :name, required: true %>
 <% end %>
 
+<% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @item, id: 'form_with' do |f| %>
 <%= f.text_field :name, required: true, id: 'item_name' %>
+<% end %>
 <% end %>
     ERB
   end
@@ -160,8 +174,10 @@ class ItemsController < ApplicationController
 <%= f.text_field :name, required: false %>
 <% end %>
 
+<% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @item, id: 'form_with' do |f| %>
 <%= f.text_field :name, required: false, id: 'item_name' %>
+<% end %>
 <% end %>
     ERB
   end

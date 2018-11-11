@@ -3,7 +3,11 @@
 require 'test_helper'
 
 class ActiveModelValidationTest < ActionDispatch::IntegrationTest
-  FORM_ID_LIST = %w[#form_for #form_with].freeze
+  FORM_ID_LIST = if Rails::VERSION::STRING >= '5.1'
+                   %w[#form_for #form_with].freeze
+                 else
+                   %w[#form_for].freeze
+                 end
 
   teardown do
     Item._validators.clear
