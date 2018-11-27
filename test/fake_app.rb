@@ -56,28 +56,48 @@ class PeopleController < ApplicationController
   def new
     @person = Person.new
     render inline: <<-ERB
-<%= form_for @person do |f| %>
+<%= form_for @person, html: { id: 'form_for' } do |f| %>
 <%= f.text_field :name %>
 <%= f.text_area :bio %>
 <% end %>
-ERB
+
+<% if Rails::VERSION::STRING >= '5.1' %>
+<%= form_with model: @person, id: 'form_with' do |f| %>
+<%= f.text_field :name, id: 'person_name' %>
+<%= f.text_area :bio, id: 'person_bio' %>
+<% end %>
+<% end %>
+    ERB
   end
 
   def new_without_html5_validation
     @person = Person.new
     render inline: <<-ERB
-<%= form_for @person, auto_html5_validation: false do |f| %>
+<%= form_for @person, html: { id: 'form_for' }, auto_html5_validation: false do |f| %>
 <%= f.text_field :name %>
 <%= f.text_field :email %>
 <% end %>
-ERB
+
+<% if Rails::VERSION::STRING >= '5.1' %>
+<%= form_with model: @person, id: 'form_with', auto_html5_validation: false do |f| %>
+<%= f.text_field :name, id: 'person_name' %>
+<%= f.text_field :email, id: 'person_email' %>
+<% end %>
+<% end %>
+    ERB
   end
 
   def new_with_required_true
     @person = Person.new
     render inline: <<-ERB
-<%= form_for @person do |f| %>
+<%= form_for @person, html: { id: 'form_for' } do |f| %>
 <%= f.text_field :email, required: true %>
+<% end %>
+
+<% if Rails::VERSION::STRING >= '5.1' %>
+<%= form_with model: @person, id: 'form_with' do |f| %>
+<%= f.text_field :email, required: true, id: 'person_email' %>
+<% end %>
 <% end %>
     ERB
   end
@@ -85,8 +105,14 @@ ERB
   def new_with_required_false
     @person = Person.new
     render inline: <<-ERB
-<%= form_for @person do |f| %>
+<%= form_for @person, html: { id: 'form_for' } do |f| %>
 <%= f.text_field :email, required: false %>
+<% end %>
+
+<% if Rails::VERSION::STRING >= '5.1' %>
+<%= form_with model: @person, id: 'form_with' do |f| %>
+<%= f.text_field :email, required: false, id: 'person_email' %>
+<% end %>
 <% end %>
     ERB
   end
@@ -95,28 +121,48 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     render inline: <<-ERB
-<%= form_for @item do |f| %>
+<%= form_for @item, html: { id: 'form_for' } do |f| %>
 <%= f.text_field :name %>
 <%= f.text_area :description %>
 <% end %>
-ERB
+
+<% if Rails::VERSION::STRING >= '5.1' %>
+<%= form_with model: @item, id: 'form_with' do |f| %>
+<%= f.text_field :name, id: 'item_name' %>
+<%= f.text_area :description, id: 'item_description' %>
+<% end %>
+<% end %>
+    ERB
   end
 
   def new_without_html5_validation
     @item = Item.new
     render inline: <<-ERB
-<%= form_for @item, auto_html5_validation: false do |f| %>
+<%= form_for @item, html: { id: 'form_for' }, auto_html5_validation: false do |f| %>
 <%= f.text_field :name %>
 <%= f.text_area :description %>
 <% end %>
-ERB
+
+<% if Rails::VERSION::STRING >= '5.1' %>
+<%= form_with model: @item, id: 'form_with', auto_html5_validation: false do |f| %>
+<%= f.text_field :name, id: 'item_name' %>
+<%= f.text_area :description, id: 'item_description' %>
+<% end %>
+<% end %>
+    ERB
   end
 
   def new_with_required_true
     @item = Item.new
     render inline: <<-ERB
-<%= form_for @item do |f| %>
+<%= form_for @item, html: { id: 'form_for' } do |f| %>
 <%= f.text_field :name, required: true %>
+<% end %>
+
+<% if Rails::VERSION::STRING >= '5.1' %>
+<%= form_with model: @item, id: 'form_with' do |f| %>
+<%= f.text_field :name, required: true, id: 'item_name' %>
+<% end %>
 <% end %>
     ERB
   end
@@ -124,8 +170,14 @@ ERB
   def new_with_required_false
     @item = Item.new
     render inline: <<-ERB
-<%= form_for @item do |f| %>
+<%= form_for @item, html: { id: 'form_for' } do |f| %>
 <%= f.text_field :name, required: false %>
+<% end %>
+
+<% if Rails::VERSION::STRING >= '5.1' %>
+<%= form_with model: @item, id: 'form_with' do |f| %>
+<%= f.text_field :name, required: false, id: 'item_name' %>
+<% end %>
 <% end %>
     ERB
   end
