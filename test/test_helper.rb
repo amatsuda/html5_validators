@@ -12,6 +12,7 @@ require 'selenium/webdriver'
 # needs to load the app before loading rspec/rails => capybara
 require 'fake_app'
 
+require 'active_support/test_case'
 require 'test/unit/active_support'
 require 'test/unit/capybara'
 require 'capybara/rails'
