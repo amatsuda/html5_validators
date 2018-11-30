@@ -18,7 +18,8 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
-  s.add_development_dependency 'test-unit-rails'
+  s.add_development_dependency 'test-unit-activesupport'
+  s.add_development_dependency 'test-unit-capybara'
   s.add_development_dependency 'selenium-webdriver'
   s.add_development_dependency 'puma'
   s.add_development_dependency 'capybara', '>= 2'

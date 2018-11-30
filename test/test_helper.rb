@@ -11,7 +11,13 @@ require 'selenium/webdriver'
 
 # needs to load the app before loading rspec/rails => capybara
 require 'fake_app'
-require 'test/unit/rails/test_help'
+
+require 'test/unit/active_support'
+require 'test/unit/capybara'
+require 'capybara/rails'
+require 'capybara/dsl'
+ActionDispatch::IntegrationTest.send :include, Capybara::DSL
+
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
