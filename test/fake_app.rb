@@ -3,25 +3,7 @@
 require 'action_controller/railtie'
 require 'active_model'
 
-begin
-  require 'active_record'
-
-  ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
-
-  # migrations
-  ActiveRecord::Base.connection.instance_eval do
-    create_table :people do |t|
-      t.string :name
-      t.string :email
-      t.integer :age
-      t.text :bio
-    end
-  end
-rescue LoadError
-end
-
 # config
-
 class Html5ValidatorsTestApp < Rails::Application
   config.secret_token = "You know I'm born to lose, and gambling's for fools, But that's the way I like it baby, I don't wanna live for ever, And don't forget the joker!"
   config.session_store :cookie_store, key: '_myapp_session'
@@ -49,11 +31,29 @@ Rails.application.routes.draw do
 end
 
 # models
-class ApplicationRecord < ActiveRecord::Base
-  self.abstract_class = true
+begin
+  require 'active_record'
+
+  ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+
+  # migrations
+  ActiveRecord::Base.connection.instance_eval do
+    create_table :people do |t|
+      t.string :name
+      t.string :email
+      t.integer :age
+      t.text :bio
+    end
+  end
+
+  class ApplicationRecord < ActiveRecord::Base
+    self.abstract_class = true
+  end
+  class Person < ApplicationRecord
+  end
+rescue LoadError
 end
-class Person < ApplicationRecord
-end
+
 class Item
   if ActiveModel::VERSION::STRING >= '4'
     include ActiveModel::Model
