@@ -33,13 +33,14 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
 
   sub_test_case 'with required validation' do
     setup do
-      Person.validates_presence_of :name, :bio
+      Person.validates_presence_of :name, :bio, :user_type
     end
     test 'new form' do
       visit '/people/new'
       FORM_ID_LIST.each do |form|
         assert_equal 'required', find("#{form} input#person_name")[:required]
         assert_equal 'required', find("#{form} textarea#person_bio")[:required]
+        assert_equal 'required', find("#{form} select[name='person[user_type]']")[:required]
       end
     end
     test 'new_without_html5_validation form' do
@@ -91,6 +92,7 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
         FORM_ID_LIST.each do |form|
           assert_nil find("#{form} input#person_name")[:required]
           assert_nil find("#{form} textarea#person_bio")[:required]
+          assert_nil find("#{form} select[name='person[user_type]']")[:required]
         end
       end
     end

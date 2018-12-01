@@ -45,6 +45,7 @@ if defined? ActiveRecord
       t.string :email
       t.integer :age
       t.text :bio
+      t.string :user_type
     end
   end
 
@@ -76,12 +77,14 @@ class PeopleController < ApplicationController
 <%= form_for @person, html: { id: 'form_for' } do |f| %>
 <%= f.text_field :name %>
 <%= f.text_area :bio %>
+<%= f.select :user_type, %w(normal admin), include_blank: true %>
 <% end %>
 
 <% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @person, id: 'form_with' do |f| %>
 <%= f.text_field :name, id: 'person_name' %>
 <%= f.text_area :bio, id: 'person_bio' %>
+<%= f.select :user_type, %w(normal admin), include_blank: true %>
 <% end %>
 <% end %>
     ERB
@@ -93,12 +96,14 @@ class PeopleController < ApplicationController
 <%= form_for @person, html: { id: 'form_for' }, auto_html5_validation: false do |f| %>
 <%= f.text_field :name %>
 <%= f.text_field :email %>
+<%= f.select :user_type, %w(normal admin), include_blank: true %>
 <% end %>
 
 <% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @person, id: 'form_with', auto_html5_validation: false do |f| %>
 <%= f.text_field :name, id: 'person_name' %>
 <%= f.text_field :email, id: 'person_email' %>
+<%= f.select :user_type, %w(normal admin), include_blank: true %>
 <% end %>
 <% end %>
     ERB

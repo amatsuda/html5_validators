@@ -53,6 +53,16 @@ module ActionView
         to_check_box_tag_without_html5_attributes options, checked_value, unchecked_value
       end
       alias_method_chain :to_check_box_tag, :html5_attributes
+
+      private
+
+      def select_content_tag_with_html5_attributes(option_tags, options, html_options)
+        if object.is_a?(ActiveModel::Validations) && (object.auto_html5_validation != false) && (object.class.auto_html5_validation != false)
+          html_options["required"] ||= object.attribute_required?(method_name)
+        end
+        select_content_tag_without_html5_attributes option_tags, options, html_options
+      end
+      alias_method_chain :select_content_tag, :html5_attributes
     end
   end
 end
