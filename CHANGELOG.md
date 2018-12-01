@@ -1,3 +1,10 @@
+## 1.9.0
+
+* Added support for `form_with` [@DialBird]
+
+* Enhanced support for non-AR applications to load all necessary monkey-patches on application initialization
+
+
 ## 1.8.0
 
 * Added support for AR `validation_context` such as `on: :create` or `on: :update`
