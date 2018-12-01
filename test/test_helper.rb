@@ -34,6 +34,3 @@ rescue LoadError
 else
   ActionDispatch::SystemTestCase.driven_by(:selenium, using: :headless_chrome)
 end
-
-ActiveRecord::Migration.verbose = false
-CreateAllTables.up

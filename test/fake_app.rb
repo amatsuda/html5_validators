@@ -187,13 +187,11 @@ end
 module ApplicationHelper; end
 
 #migrations
-class CreateAllTables < ActiveRecord::VERSION::MAJOR >= 5 ? ActiveRecord::Migration[5.0] : ActiveRecord::Migration
-  def self.up
-    create_table :people do |t|
-      t.string :name
-      t.string :email
-      t.integer :age
-      t.text :bio
-    end
+ActiveRecord::Base.connection.instance_eval do
+  create_table :people do |t|
+    t.string :name
+    t.string :email
+    t.integer :age
+    t.text :bio
   end
 end
