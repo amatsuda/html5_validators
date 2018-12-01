@@ -1,10 +1,26 @@
 # frozen_string_literal: true
 
-require 'active_record'
 require 'action_controller/railtie'
+require 'active_model'
+
+begin
+  require 'active_record'
+
+  ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+
+  # migrations
+  ActiveRecord::Base.connection.instance_eval do
+    create_table :people do |t|
+      t.string :name
+      t.string :email
+      t.integer :age
+      t.text :bio
+    end
+  end
+rescue LoadError
+end
 
 # config
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
 
 class Html5ValidatorsTestApp < Rails::Application
   config.secret_token = "You know I'm born to lose, and gambling's for fools, But that's the way I like it baby, I don't wanna live for ever, And don't forget the joker!"
@@ -185,13 +201,3 @@ end
 
 # helpers
 module ApplicationHelper; end
-
-#migrations
-ActiveRecord::Base.connection.instance_eval do
-  create_table :people do |t|
-    t.string :name
-    t.string :email
-    t.integer :age
-    t.text :bio
-  end
-end
