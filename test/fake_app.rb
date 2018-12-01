@@ -2,6 +2,10 @@
 
 require 'action_controller/railtie'
 require 'active_model'
+begin
+  require 'active_record'
+rescue LoadError
+end
 
 # config
 class Html5ValidatorsTestApp < Rails::Application
@@ -31,9 +35,7 @@ Rails.application.routes.draw do
 end
 
 # models
-begin
-  require 'active_record'
-
+if defined? ActiveRecord
   ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
 
   # migrations
@@ -51,7 +53,6 @@ begin
   end
   class Person < ApplicationRecord
   end
-rescue LoadError
 end
 
 class Item
