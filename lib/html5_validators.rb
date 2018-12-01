@@ -11,11 +11,15 @@ module Html5Validators
 
   class Railtie < ::Rails::Railtie #:nodoc:
     initializer 'html5_validators' do
-      ActiveSupport.on_load(:active_record) do
+      config.after_initialize do
         require 'html5_validators/active_model/helper_methods'
         require 'html5_validators/active_model/validations'
+      end
+
+      ActiveSupport.on_load(:active_record) do
         require 'html5_validators/active_record/base'
       end
+
       ActiveSupport.on_load(:action_view) do
         if ActionPack::VERSION::STRING >= '4'
           require 'html5_validators/action_view/form_helpers'
