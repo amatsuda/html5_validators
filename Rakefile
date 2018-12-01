@@ -4,7 +4,7 @@ require 'rake/testtask'
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
-  if defined? ::ActiveRecord
+  if Gem.loaded_specs['activerecord']
     t.test_files = Dir['test/**/*_test.rb']
   else
     t.test_files = Dir['test/**/*_test.rb'] - Dir['test/**/*active_record*'] - Dir['test/**/*active_record*/*.rb']
