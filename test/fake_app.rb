@@ -46,6 +46,7 @@ if defined? ActiveRecord
       t.integer :age
       t.text :bio
       t.string :user_type
+      t.boolean :terms_of_service
     end
   end
 
@@ -78,6 +79,7 @@ class PeopleController < ApplicationController
 <%= f.text_field :name %>
 <%= f.text_area :bio %>
 <%= f.select :user_type, %w(normal admin), include_blank: true %>
+<%= f.check_box :terms_of_service %>
 <% end %>
 
 <% if Rails::VERSION::STRING >= '5.1' %>
@@ -85,6 +87,7 @@ class PeopleController < ApplicationController
 <%= f.text_field :name, id: 'person_name' %>
 <%= f.text_area :bio, id: 'person_bio' %>
 <%= f.select :user_type, %w(normal admin), include_blank: true %>
+<%= f.check_box :terms_of_service %>
 <% end %>
 <% end %>
     ERB
