@@ -42,6 +42,7 @@ if defined? ActiveRecord
   ActiveRecord::Base.connection.instance_eval do
     create_table :people do |t|
       t.string :name
+      t.string :password
       t.string :email
       t.integer :age
       t.text :bio
@@ -77,6 +78,7 @@ class PeopleController < ApplicationController
     render inline: <<-ERB
 <%= form_for @person, html: { id: 'form_for' } do |f| %>
 <%= f.text_field :name %>
+<%= f.password_field :password %>
 <%= f.text_area :bio %>
 <%= f.select :user_type, %w(normal admin), include_blank: true %>
 <%= f.check_box :terms_of_service %>
@@ -85,6 +87,7 @@ class PeopleController < ApplicationController
 <% if Rails::VERSION::STRING >= '5.1' %>
 <%= form_with model: @person, id: 'form_with' do |f| %>
 <%= f.text_field :name, id: 'person_name' %>
+<%= f.password_field :password, id: 'person_password' %>
 <%= f.text_area :bio, id: 'person_bio' %>
 <%= f.select :user_type, %w(normal admin), include_blank: true %>
 <%= f.check_box :terms_of_service %>
