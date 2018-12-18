@@ -46,8 +46,9 @@ if defined? ActiveRecord
       t.string :email
       t.integer :age
       t.text :bio
-      t.string :user_type
+      t.string :blood_type
       t.boolean :terms_of_service
+      t.string :user_type
     end
   end
 
@@ -80,8 +81,10 @@ class PeopleController < ApplicationController
 <%= f.text_field :name %>
 <%= f.password_field :password %>
 <%= f.text_area :bio %>
-<%= f.select :user_type, %w(normal admin), include_blank: true %>
+<%= f.select :blood_type, %w(A B O AB), include_blank: true %>
 <%= f.check_box :terms_of_service %>
+<%= f.radio_button :user_type, 'normal' %>
+<%= f.radio_button :user_type, 'admin' %>
 <% end %>
 
 <% if Rails::VERSION::STRING >= '5.1' %>
@@ -89,8 +92,10 @@ class PeopleController < ApplicationController
 <%= f.text_field :name, id: 'person_name' %>
 <%= f.password_field :password, id: 'person_password' %>
 <%= f.text_area :bio, id: 'person_bio' %>
-<%= f.select :user_type, %w(normal admin), include_blank: true %>
+<%= f.select :blood_type, %w(A B O AB), include_blank: true %>
 <%= f.check_box :terms_of_service %>
+<%= f.radio_button :user_type, 'normal' %>
+<%= f.radio_button :user_type, 'admin' %>
 <% end %>
 <% end %>
     ERB
