@@ -42,7 +42,7 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
         assert_equal 'required', find("#{form} input#person_password")[:required]
         assert_equal 'required', find("#{form} textarea#person_bio")[:required]
         assert_equal 'required', find("#{form} select[name='person[blood_type]']")[:required]
-        assert_equal 'required', find("#{form} input[name='person[terms_of_service]']")[:required]
+        assert_equal 'required', find("#{form} input[type=checkbox][name='person[terms_of_service]']")[:required]
         assert_equal 2, all("#{form} input[name='person[user_type]'][required=required]").size
       end
     end
@@ -97,7 +97,7 @@ class ActiveRecordValidationTest < ActionDispatch::IntegrationTest
           assert_nil find("#{form} input#person_password")[:required]
           assert_nil find("#{form} textarea#person_bio")[:required]
           assert_nil find("#{form} select[name='person[blood_type]']")[:required]
-          assert_nil find("#{form} input[name='person[terms_of_service]']")[:required]
+          assert_nil find("#{form} input[type=checkbox][name='person[terms_of_service]']")[:required]
           all("#{form} input[name='person[user_type]']").each do |radio|
             assert_nil radio[:required]
           end
