@@ -168,9 +168,9 @@ end
 
 ## Supported versions
 
-* Ruby 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (trunk)
+* Ruby 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7 (trunk)
 
-* Rails 3.2.x, 4.0.x, 4.1, 4.2, 5.0, 5.1, 5.2, 6.0 (edge)
+* Rails 3.2.x, 4.0.x, 4.1, 4.2, 5.0, 5.1, 5.2, 6.0, 6.1 (edge)
 
 * HTML5 compatible browsers
 
