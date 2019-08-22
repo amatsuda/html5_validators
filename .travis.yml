@@ -23,6 +23,7 @@ rvm:
 
 gemfile:
   - gemfiles/Gemfile.rails-edge
+  - gemfiles/Gemfile.rails-6.0
   - gemfiles/Gemfile.rails-5.2
   - gemfiles/Gemfile.activemodel-5.2
   - gemfiles/Gemfile.rails-5.1
@@ -46,6 +47,16 @@ matrix:
       gemfile: gemfiles/Gemfile.rails-edge
     - rvm: 2.0.0
       gemfile: gemfiles/Gemfile.rails-edge
+    - rvm: 2.4.5
+      gemfile: gemfiles/Gemfile.rails-6.0
+    - rvm: 2.3.8
+      gemfile: gemfiles/Gemfile.rails-6.0
+    - rvm: 2.2.10
+      gemfile: gemfiles/Gemfile.rails-6.0
+    - rvm: 2.1.10
+      gemfile: gemfiles/Gemfile.rails-6.0
+    - rvm: 2.0.0
+      gemfile: gemfiles/Gemfile.rails-6.0
     - rvm: 2.1.10
       gemfile: gemfiles/Gemfile.rails-5.2
     - rvm: 2.0.0
