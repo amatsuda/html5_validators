@@ -10,6 +10,7 @@ before_install:
 
 rvm:
   - ruby-head
+  - 2.7.0
   - 2.6.5
   - 2.5.7
   - 2.4.9
@@ -54,6 +55,8 @@ matrix:
       gemfile: gemfiles/Gemfile.rails-6.0
     - rvm: 2.0.0
       gemfile: gemfiles/Gemfile.rails-6.0
+    - rvm: 2.7.0
+      gemfile: gemfiles/Gemfile.rails-5.2
     - rvm: 2.1.10
       gemfile: gemfiles/Gemfile.rails-5.2
     - rvm: 2.0.0
@@ -62,6 +65,8 @@ matrix:
       gemfile: gemfiles/Gemfile.activemodel-5.2
     - rvm: 2.0.0
       gemfile: gemfiles/Gemfile.activemodel-5.2
+    - rvm: 2.7.0
+      gemfile: gemfiles/Gemfile.rails-5.1
     - rvm: 2.5.7
       gemfile: gemfiles/Gemfile.rails-5.1
     - rvm: 2.4.9
@@ -72,6 +77,8 @@ matrix:
       gemfile: gemfiles/Gemfile.rails-5.1
     - rvm: 2.0.0
       gemfile: gemfiles/Gemfile.rails-5.1
+    - rvm: 2.7.0
+      gemfile: gemfiles/Gemfile.rails-5.0
     - rvm: 2.5.7
       gemfile: gemfiles/Gemfile.rails-5.0
     - rvm: 2.4.9
@@ -83,6 +90,8 @@ matrix:
     - rvm: 2.0.0
       gemfile: gemfiles/Gemfile.rails-5.0
     - rvm: ruby-head
+      gemfile: gemfiles/Gemfile.rails-4.2
+    - rvm: 2.7.0
       gemfile: gemfiles/Gemfile.rails-4.2
     - rvm: 2.6.5
       gemfile: gemfiles/Gemfile.rails-4.2
@@ -91,6 +100,8 @@ matrix:
     - rvm: 2.4.9
       gemfile: gemfiles/Gemfile.rails-4.2
     - rvm: ruby-head
+      gemfile: gemfiles/Gemfile.rails-4.1
+    - rvm: 2.7.0
       gemfile: gemfiles/Gemfile.rails-4.1
     - rvm: 2.6.5
       gemfile: gemfiles/Gemfile.rails-4.1
@@ -104,6 +115,8 @@ matrix:
       gemfile: gemfiles/Gemfile.rails-4.1
     - rvm: ruby-head
       gemfile: gemfiles/Gemfile.rails-4.0
+    - rvm: 2.7.0
+      gemfile: gemfiles/Gemfile.rails-4.0
     - rvm: 2.6.5
       gemfile: gemfiles/Gemfile.rails-4.0
     - rvm: 2.5.7
@@ -115,6 +128,8 @@ matrix:
     - rvm: 2.1.10
       gemfile: gemfiles/Gemfile.rails-4.0
     - rvm: ruby-head
+      gemfile: gemfiles/Gemfile.rails-3.2
+    - rvm: 2.7.0
       gemfile: gemfiles/Gemfile.rails-3.2
     - rvm: 2.6.5
       gemfile: gemfiles/Gemfile.rails-3.2
