@@ -6,7 +6,7 @@ addons:
 before_install:
   - sudo apt update -qq
   - sudo apt install -y chromium-chromedriver
-  - gem install bundler
+  - if [ `echo "${TRAVIS_RUBY_VERSION:0:3} < 2.7" | bc` == 1 ]; then gem i bundler -v '<2'; fi;
 
 rvm:
   - ruby-head
