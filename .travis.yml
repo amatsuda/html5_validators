@@ -1,7 +1,5 @@
 language: ruby
 
-sudo: required
-
 addons:
   chrome: stable
 
