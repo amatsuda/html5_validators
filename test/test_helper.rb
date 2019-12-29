@@ -32,5 +32,9 @@ rescue LoadError
   end
   Capybara.javascript_driver = :chrome
 else
-  ActionDispatch::SystemTestCase.driven_by(:selenium, using: :headless_chrome)
+  if ActionPack::VERSION::STRING > '5.2'
+    ActionDispatch::SystemTestCase.driven_by :selenium, using: :headless_chrome
+  else
+    ActionDispatch::SystemTestCase.driven_by :selenium_chrome_headless
+  end
 end
