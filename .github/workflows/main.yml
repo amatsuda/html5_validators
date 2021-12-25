@@ -10,6 +10,7 @@ jobs:
 
         gemfile:
           - gemfiles/Gemfile.rails-edge
+          - gemfiles/Gemfile.rails-7.0
           - gemfiles/Gemfile.rails-6.1
           - gemfiles/Gemfile.rails-6.0
 
