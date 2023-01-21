@@ -12,13 +12,14 @@ jobs:
           - gemfiles/Gemfile.rails-edge
           - gemfiles/Gemfile.rails-7.0
           - gemfiles/Gemfile.rails-6.1
-          - gemfiles/Gemfile.rails-6.0
-
-        exclude:
-          - ruby_version: '3.1'
-            gemfile: gemfiles/Gemfile.rails-6.0
 
         include:
+          - ruby_version: '3.0'
+            gemfile: gemfiles/Gemfile.rails-6.0
+
+          - ruby_version: '2.7'
+            gemfile: gemfiles/Gemfile.rails-6.0
+
           - ruby_version: '2.6'
             gemfile: gemfiles/Gemfile.rails-5.2
           - ruby_version: '2.6'
