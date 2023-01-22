@@ -59,6 +59,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby_version }}
+          rubygems: ${{ matrix.ruby_version < '2.6' && 'default' || 'latest' }}
           bundler: ${{ (contains(matrix.gemfile, 'rails_4') || contains(matrix.gemfile, 'rails_3')) && '1' || '2' }}
           bundler-cache: true
         continue-on-error: ${{ (matrix.ruby_version == 'ruby-head') || (matrix.rails_version == 'edge') || (matrix.allow_failures == 'true') }}
