@@ -189,7 +189,7 @@ Then bundle:
 
 ## Notes
 
-When accessed by an HTML5 incompatible lagacy browser, these extra attributes
+When accessed by an HTML5 incompatible legacy browser, these extra attributes
 will just be ignored.
 
 ## Todo
