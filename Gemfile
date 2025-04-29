@@ -22,9 +22,7 @@ elsif ENV['RAILS_VERSION'] && !ENV['RAILS_VERSION'].empty?
     gem 'test-unit-rails', '1.0.2'
   end
 
-  if ENV['RAILS_VERSION'] >= '6'
-    gem 'webdrivers'
-  end
+  gem 'webdrivers' if (ENV['RAILS_VERSION'] && ENV['RAILS_VERSION'] >= '6') && (RUBY_VERSION < '3')
 
 elsif ENV['ACTIVEMODEL_VERSION']
   gem 'railties', "~> #{ENV['ACTIVEMODEL_VERSION']}.0"
