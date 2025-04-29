@@ -11,7 +11,11 @@ if ENV['RAILS_VERSION'] == 'edge'
 elsif ENV['RAILS_VERSION'] && !ENV['RAILS_VERSION'].empty?
   gem 'railties', "~> #{ENV['RAILS_VERSION']}.0"
   gem 'activerecord', "~> #{ENV['RAILS_VERSION']}.0"
-  gem 'sqlite3', '< 1.4' if ENV['RAILS_VERSION'] <= '5.0'
+  if ENV['RAILS_VERSION'] <= '5.0'
+    gem 'sqlite3', '< 1.4'
+  elsif (ENV['RAILS_VERSION'] <= '8') || (RUBY_VERSION < '3')
+    gem 'sqlite3', '< 2'
+  end
 
   if ENV['RAILS_VERSION'] < '4'
     gem 'capybara', '~> 2.0.0'
